@@ -3,7 +3,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class Inventario {
+public class Inventario implements Cloneable{
     private List<Item> itens;
 
     public Inventario() {
@@ -36,6 +36,19 @@ public class Inventario {
         for (Item item : itens) {System.out.println(item.getNome());}
     }
 
+    public Inventario (Inventario mod) throws Exception{
+        if (mod == null) throw new Exception("Erro ao tentar criar um Inventario");
+        this.itens = new ArrayList<>();
+        for (Item item : itens) {this.itens.add(item.clone());}
+    }
 
+    @Override
+    public Inventario clone(){
+        Inventario retorno = null;
+        try {
+            retorno = new Inventario(this);
+        }catch (Exception erro) {}
+        return retorno;
+    }
 
 }

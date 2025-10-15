@@ -1,6 +1,6 @@
 import java.util.Objects;
 
-public class Item implements Comparable<Item> {
+public class Item implements Comparable<Item>, Cloneable {
     private  String nome;
     private String descricao;
     private String efeito;
@@ -39,6 +39,18 @@ public class Item implements Comparable<Item> {
         if (this.nome.compareTo(i.getNome()) > 0) return -1;
         if (this.nome.compareTo(i.getNome()) < 0) return 1;
         return 0;
+    }
+    
+    public Item(Item novo){
+        this.nome = novo.nome;
+        this.descricao = novo.descricao;
+        this.efeito = novo.efeito;
+        this.quantidade = novo.quantidade;
+    }
+
+    @Override
+    public Item clone(){
+        return new Item(this);
     }
 
 }
