@@ -12,10 +12,12 @@ public class Guerreiro extends Personagem {
     @Override
     public void atacar(Personagem inimigo) {
         System.out.println( this.nome + " atacando");
+        // implementar lógica
     }
 
     @Override
     public void defender(Personagem inimigo) {
         System.out.println( this.nome + " defendendo");
+        // implementar lógica
     }
 }
