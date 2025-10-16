@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class Inventario implements Cloneable{
     private List<Item> itens;
@@ -49,6 +46,31 @@ public class Inventario implements Cloneable{
             retorno = new Inventario(this);
         }catch (Exception erro) {}
         return retorno;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == this) return false;
+        if (obj == null) return false;
+        if (this.getClass() != obj.getClass()) return false;
+        Inventario i = (Inventario) obj;
+        if (this.itens.size() != i.itens.size()) return false;
+        for (Item item : this.itens) {
+            if (!i.itens.contains(item)) return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int ret = 1;
+        ret = ret * 2 + ((ArrayList<?>)itens).hashCode();
+        return ret;
+    }
+
+    @Override
+    public String toString() {
+        return "Inventario{" + "itens=" + itens + '}';
     }
 
 }

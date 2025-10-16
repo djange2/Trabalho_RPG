@@ -29,7 +29,8 @@ public class Item implements Comparable<Item>, Cloneable {
         if (this == obj) return true;
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
-        if (!Objects.equals(this.nome, ((Item) obj).nome) || !Objects.equals(this.descricao, ((Item) obj).descricao) || !Objects.equals(this.efeito, ((Item) obj).efeito)) return false;
+        if (!this.nome.equals(((Item) obj).nome) || !this.descricao.equals(((Item) obj).descricao) ||
+                !this.efeito.equals(((Item) obj).efeito)) return false;
         quantidade++;
         return true;
     }
@@ -40,8 +41,19 @@ public class Item implements Comparable<Item>, Cloneable {
         if (this.nome.compareTo(i.getNome()) < 0) return 1;
         return 0;
     }
-    
-    public Item(Item novo){
+
+    @Override
+    public int hashCode() {
+        int ret = 1;
+        ret = ret * 2 + this.nome.hashCode();
+        ret = ret * 2 + this.descricao.hashCode();
+        ret = ret * 2 + this.efeito.hashCode();
+        ret = ret * 2 + ((Integer)this.quantidade).hashCode();
+        return ret;
+    }
+
+    public Item(Item novo) throws Exception{
+        if (novo ==  null) throw new Exception("Modelo ausente");
         this.nome = novo.nome;
         this.descricao = novo.descricao;
         this.efeito = novo.efeito;
@@ -50,7 +62,11 @@ public class Item implements Comparable<Item>, Cloneable {
 
     @Override
     public Item clone(){
-        return new Item(this);
+        Item ret = null;
+        try {
+            ret = new Item(this);
+        } catch (Exception erro) {}
+        return ret;
     }
 
 }

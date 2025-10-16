@@ -18,5 +18,6 @@ public class Arqueiro extends Personagem {
     public void defender(Personagem inimigo) {
         System.out.println( this.nome + " defendendo");
     }
+
 }
 
