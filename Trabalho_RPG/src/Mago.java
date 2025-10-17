@@ -10,15 +10,8 @@ public class Mago extends Personagem {
     }
 
     @Override
-    public void atacar(Personagem inimigo) {
-        System.out.println( this.nome + " atacando");
-        // implementar lógica
-    }
+    public void batalhar(Inimigo inimigo) {
 
-    @Override
-    public void defender(Personagem inimigo) {
-        System.out.println( this.nome + " defendendo");
-        // implementar lógica
     }
 }
 
