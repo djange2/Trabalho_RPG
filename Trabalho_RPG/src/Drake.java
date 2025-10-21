@@ -1,6 +1,6 @@
-public class Guerreiro extends Personagem {
+public class Drake extends Personagem {
 
-    public Guerreiro(String nome) {
+    public Arqueiro(String nome) {
         this.nome = nome;
         this.pontosVida = 100;
         this.ataque = 15;
@@ -14,3 +14,4 @@ public class Guerreiro extends Personagem {
 
     }
 }
+

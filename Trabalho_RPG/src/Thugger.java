@@ -1,6 +1,6 @@
-public class Arqueiro extends Personagem {
+public class J extends Personagem {
 
-    public Arqueiro(String nome) {
+    public Mago(String nome) {
         this.nome = nome;
         this.pontosVida = 100;
         this.ataque = 15;

@@ -1,6 +1,6 @@
-public class Mago extends Personagem {
+public class Kendrick extends Personagem {
 
-    public Mago(String nome) {
+    public Guerreiro(String nome) {
         this.nome = nome;
         this.pontosVida = 100;
         this.ataque = 15;
@@ -14,4 +14,3 @@ public class Mago extends Personagem {
 
     }
 }
-
