@@ -17,11 +17,7 @@ public abstract class Personagem {
 
     public void batalhar(Inimigo inimigo) {
         while (segueBatalha(inimigo)) {
-            int valorDado = rolarDado();
-            if ((valorDado + this.ataque) > inimigo.defesa) {
-                inimigo.pontosVida -= this.ataque + valorDado;
-            }
-
+            //TODO: IMPLEMENTAR MENU DE BATALHA E ESCOLHA DO JOGADOR
             if (inimigo.pontosVida <= 0) break;
 
             int valorDadoInimigo = rolarDado();
@@ -48,6 +44,17 @@ public abstract class Personagem {
 
     public boolean isNotDerrotado() {
         return (this.pontosVida > 0);
+    }
+
+    public void rimar(Inimigo inimigo) {
+        int valorDado = rolarDado();
+        if ((valorDado + this.ataque) > inimigo.defesa) {
+            inimigo.pontosVida -= this.ataque + valorDado;
+        }
+    }
+
+    public void usarItem(Item item) {
+
     }
 
     public abstract void aumentarNivel();
