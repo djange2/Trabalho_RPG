@@ -1,14 +1,9 @@
 public class Thugger extends Personagem {
 
     public Thugger(String nome) {
-        super(nome,80,14,11);
+        super(nome, 80, 14, 11);
         this.nivel = 1;
         this.inventario = new Inventario();
-    }
-
-    @Override
-    public void batalhar(Inimigo inimigo) {
-
     }
 
     @Override

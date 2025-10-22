@@ -2,13 +2,6 @@ public class Drake extends Personagem {
 
     public Drake(String nome) {
         super(nome,110  ,9,16);
-        this.nivel = 1;
-        this.inventario = new Inventario();
-    }
-
-    @Override
-    public void batalhar(Inimigo inimigo) {
-
     }
 
     @Override

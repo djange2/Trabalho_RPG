@@ -7,11 +7,6 @@ public class Kendrick extends Personagem {
     }
 
     @Override
-    public void batalhar(Inimigo inimigo) {
-
-    }
-
-    @Override
     public void aumentarNivel() {
         this.nivel++;
         this.pontosVida += 4;

@@ -14,5 +14,8 @@ public class Inimigo extends Personagem {
         this.ataque += 2 * lvlups;
         this.defesa += lvlups;
     }
+
+    @Override
+    public void aumentarNivel() {}
 }
 

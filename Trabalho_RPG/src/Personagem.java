@@ -21,6 +21,9 @@ public abstract class Personagem {
             if ((valorDado + this.ataque) > inimigo.defesa) {
                 inimigo.pontosVida -= this.ataque + valorDado;
             }
+
+            if (inimigo.pontosVida <= 0) break;
+
             int valorDadoInimigo = rolarDado();
             if ((valorDadoInimigo + inimigo.ataque) > this.defesa) {
                 this.pontosVida -= inimigo.ataque + valorDadoInimigo;
@@ -47,9 +50,8 @@ public abstract class Personagem {
         return (this.pontosVida > 0);
     }
 
-    public void aumentarNivel() {
-        this.nivel++;
-    }
+    public abstract void aumentarNivel();
+
 
     @Override
     public String toString() {
