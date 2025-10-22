@@ -1,10 +1,7 @@
 public class Kendrick extends Personagem {
 
-    public Guerreiro(String nome) {
-        this.nome = nome;
-        this.pontosVida = 100;
-        this.ataque = 15;
-        this.defesa = 10;
+    public Kendrick(String nome) {
+        super(nome,90,12,13);
         this.nivel = 1;
         this.inventario = new Inventario();
     }
@@ -12,5 +9,13 @@ public class Kendrick extends Personagem {
     @Override
     public void batalhar(Inimigo inimigo) {
 
+    }
+
+    @Override
+    public void aumentarNivel() {
+        this.nivel++;
+        this.pontosVida += 4;
+        this.ataque += 2;
+        this.defesa += 2;
     }
 }

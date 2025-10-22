@@ -1,10 +1,7 @@
 public class Drake extends Personagem {
 
-    public Arqueiro(String nome) {
-        this.nome = nome;
-        this.pontosVida = 100;
-        this.ataque = 15;
-        this.defesa = 10;
+    public Drake(String nome) {
+        super(nome,110  ,9,16);
         this.nivel = 1;
         this.inventario = new Inventario();
     }
@@ -12,6 +9,14 @@ public class Drake extends Personagem {
     @Override
     public void batalhar(Inimigo inimigo) {
 
+    }
+
+    @Override
+    public void aumentarNivel() {
+        this.nivel++;
+        this.pontosVida += 5;
+        this.ataque += 1;
+        this.defesa += 3;
     }
 }
 
