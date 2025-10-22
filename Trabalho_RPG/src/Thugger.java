@@ -2,8 +2,6 @@ public class Thugger extends Personagem {
 
     public Thugger(String nome) {
         super(nome, 80, 14, 11);
-        this.nivel = 1;
-        this.inventario = new Inventario();
     }
 
     @Override
@@ -12,7 +10,6 @@ public class Thugger extends Personagem {
         this.pontosVida += 3;
         this.ataque += 3;
         this.defesa += 1;
-        System.out.println(this.nome + " subiu para o nível " + this.nivel + "!");
     }
 }
 
