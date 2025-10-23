@@ -1,42 +1,28 @@
 import java.util.*;
 
 public class Inventario implements Cloneable{
-    private List<Item> itens;
+    private final List<Item> itens;
 
     public Inventario() {
         this.itens = new ArrayList<>();
     }
 
     public void adicionarItem(Item novo) {
-        for (Item item : itens) {
-            if (item.equals(novo)) {
-                item.setQuantidade(item.getQuantidade() + novo.getQuantidade());
-                return;
-            }
-        }
         itens.add(novo);
     }
 
-    public void removerItem(String nomeItem) {
-        for (Item item : itens) {
-            if (item.getNome().equals(nomeItem)) {
-                item.setQuantidade(item.getQuantidade() - 1);
-                if (item.getQuantidade() == 0) {itens.remove(item);}
-                return;
-            }
-        }
+    public void removerItem(Item item) {
+        itens.remove(item);
     }
 
-    public void  listarItems() {
-        Collections.sort(itens);
-        System.out.print("Lista de itens : ");
-        for (Item item : itens) {System.out.println(item.getNome());}
+    public ArrayList<Item> getItens() {
+        return (ArrayList<Item>) itens;
     }
 
     public Inventario (Inventario mod) throws Exception{
         if (mod == null) throw new Exception("Erro ao tentar criar um Inventario");
         this.itens = new ArrayList<>();
-        for (Item item : itens) {this.itens.add(item.clone());}
+        for (Item item : mod.itens) {this.itens.add(item.clone());}
     }
 
     @Override
@@ -73,4 +59,7 @@ public class Inventario implements Cloneable{
         return "Inventario{" + "itens=" + itens + '}';
     }
 
+    public boolean isEmpty() {
+        return itens.isEmpty();
+    }
 }

@@ -1,4 +1,7 @@
+import java.util.Scanner;
+
 public abstract class Personagem {
+    Scanner scanner = new Scanner(System.in);
     protected String nome;
     protected int pontosVida;
     protected int ataque;
@@ -17,7 +20,23 @@ public abstract class Personagem {
 
     public void batalhar(Inimigo inimigo) {
         while (segueBatalha(inimigo)) {
-            //TODO: IMPLEMENTAR MENU DE BATALHA E ESCOLHA DO JOGADOR
+            System.out.println("1 - Rimar");
+            System.out.println("2 - Usar Item");
+            System.out.println("3 - Fugir");
+            byte choice = scanner.nextByte();
+            System.out.println("Digite: ");
+            switch (choice) {
+                case 1:
+                    rimar(inimigo);
+                    break;
+                case 2:
+                    usarItem(inimigo);
+                    break;
+                case 3:
+                    if (run()) return;
+                default:
+                    System.out.println("Opção Inválida");
+            }
             if (inimigo.pontosVida <= 0) break;
 
             int valorDadoInimigo = rolarDado();
@@ -53,7 +72,43 @@ public abstract class Personagem {
         }
     }
 
-    public void usarItem(Item item) {
+    public void usarItem(Inimigo inimigo) {
+        if (inventario.isEmpty()) {
+            System.out.println("Você não tem itens para usar!");
+            return;
+        }
+
+        System.out.println("Escolha um item para usar:");
+        for (int i = 0; i < inventario.getItens().size(); i++) {
+            Item item = inventario.getItens().get(i);
+            System.out.println((i + 1) + " - " + item.getNome() + " (" + item.getQuantidade() + ")");
+        }
+
+        int escolha = scanner.nextInt();
+        if (escolha < 1 || escolha > inventario.getItens().size()) {
+            System.out.println("Escolha inválida!");
+            return;
+        }
+
+        Item escolhido = inventario.getItens().get(escolha - 1);
+
+        aplicarEfeitoItem(escolhido, inimigo);
+
+        escolhido.setQuantidade(escolhido.getQuantidade() - 1);
+        if (escolhido.getQuantidade() <= 0) {
+            inventario.removerItem(escolhido);
+        }
+    }
+
+    public void aplicarEfeitoItem(Item item, Inimigo inimigo) {
+
+    }
+
+
+
+    public boolean run() {
+        int tentativa = (int) ((Math.random() * 10)) + 1;
+        return tentativa > 6;
 
     }
 

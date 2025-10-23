@@ -1,7 +1,7 @@
 public class Thugger extends Personagem {
 
     public Thugger(String nome) {
-        super(nome, 80, 13, 11);
+        super(nome, 70, 13, 11);
     }
 
     @Override

@@ -37,9 +37,7 @@ public class Item implements Comparable<Item>, Cloneable {
 
     @Override
     public int compareTo(Item i){
-        if (this.nome.compareTo(i.getNome()) > 0) return -1;
-        if (this.nome.compareTo(i.getNome()) < 0) return 1;
-        return 0;
+        return this.nome.compareTo(i.getNome());
     }
 
     @Override
