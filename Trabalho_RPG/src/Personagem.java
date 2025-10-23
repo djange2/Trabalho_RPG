@@ -23,27 +23,34 @@ public abstract class Personagem {
             System.out.println("1 - Rimar");
             System.out.println("2 - Usar Item");
             System.out.println("3 - Fugir");
+            System.out.print("Digite: ");
             byte choice = scanner.nextByte();
-            System.out.println("Digite: ");
+
             switch (choice) {
-                case 1:
-                    rimar(inimigo);
-                    break;
-                case 2:
-                    usarItem(inimigo);
-                    break;
-                case 3:
-                    if (run()) return;
-                default:
-                    System.out.println("Opção Inválida");
+                case 1 -> rimar(inimigo);
+                case 2 -> usarItem(inimigo);
+                case 3 -> {
+                    if (run()) {
+                        System.out.println("Você fugiu com sucesso!");
+                        return;
+                    } else {
+                        System.out.println("Falha ao fugir!");
+                    }
+                }
+                default -> System.out.println("Opção Inválida");
             }
+
             if (inimigo.pontosVida <= 0) break;
 
             int valorDadoInimigo = rolarDado();
             if ((valorDadoInimigo + inimigo.ataque) > this.defesa) {
                 this.pontosVida -= inimigo.ataque + valorDadoInimigo;
+                System.out.println(inimigo.nome + " acertou causando " + (inimigo.ataque + valorDadoInimigo) + " de dano!");
+            } else {
+                System.out.println(inimigo.nome + " errou o ataque!");
             }
         }
+
 
         if (isNotDerrotado()) {
             System.out.println(this.nome + " venceu a batalha!");
@@ -69,7 +76,9 @@ public abstract class Personagem {
         int valorDado = rolarDado();
         if ((valorDado + this.ataque) > inimigo.defesa) {
             inimigo.pontosVida -= this.ataque + valorDado;
+            System.out.println(this.nome+" rimou e deu " +this.ataque + valorDado+" de dano");
         }
+        System.out.println(this.nome+" errou a rima!");
     }
 
     public void usarItem(Inimigo inimigo) {
@@ -84,7 +93,7 @@ public abstract class Personagem {
             System.out.println((i + 1) + " - " + item.getNome() + " (" + item.getQuantidade() + ")");
         }
 
-        int escolha = scanner.nextInt();
+        int escolha = scanner.nextByte();
         if (escolha < 1 || escolha > inventario.getItens().size()) {
             System.out.println("Escolha inválida!");
             return;
@@ -92,7 +101,7 @@ public abstract class Personagem {
 
         Item escolhido = inventario.getItens().get(escolha - 1);
 
-        aplicarEfeitoItem(escolhido, inimigo);
+        aplicarEfeitoItem(escolhido);
 
         escolhido.setQuantidade(escolhido.getQuantidade() - 1);
         if (escolhido.getQuantidade() <= 0) {
@@ -100,8 +109,22 @@ public abstract class Personagem {
         }
     }
 
-    public void aplicarEfeitoItem(Item item, Inimigo inimigo) {
-
+    private void aplicarEfeitoItem(Item item) {
+        switch (item.getEfeito().toLowerCase()) {
+            case "cura" -> {
+                pontosVida += 10;
+                System.out.println(nome + " usou " + item.getNome() + " e recuperou 10 pontos de vida!");
+            }
+            case "ataque" -> {
+                ataque += 2;
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em 5!");
+            }
+            case "defesa" -> {
+                defesa += 2;
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em 5!");
+            }
+            default -> System.out.println("O item não teve efeito...");
+        }
     }
 
 
