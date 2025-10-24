@@ -1,7 +1,7 @@
 public class Drake extends Personagem {
 
-    public Drake(String nome) {
-        super(nome,110  ,9,14);
+    public Drake() {
+        super("Drake",110  ,9,14);
     }
 
     @Override

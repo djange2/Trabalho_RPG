@@ -1,7 +1,7 @@
 public class Kendrick extends Personagem {
 
-    public Kendrick(String nome) {
-        super(nome,90,12,13);
+    public Kendrick() {
+        super("Kendrick",90,12,13);
     }
 
     @Override

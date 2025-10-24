@@ -18,6 +18,10 @@ public abstract class Personagem {
         this.inventario = new Inventario();
     }
 
+    public String getNome(){
+        return this.nome;
+    }
+
     public void batalhar(Inimigo inimigo) {
         while (segueBatalha(inimigo)) {
             System.out.println("1 - Rimar");
@@ -117,11 +121,11 @@ public abstract class Personagem {
             }
             case "ataque" -> {
                 ataque += 2;
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em 5!");
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou o ataque em 2!");
             }
             case "defesa" -> {
                 defesa += 2;
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em 5!");
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em 2!");
             }
             default -> System.out.println("O item não teve efeito...");
         }
