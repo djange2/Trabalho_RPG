@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public abstract class Personagem {
@@ -53,6 +54,9 @@ public abstract class Personagem {
             } else {
                 System.out.println(inimigo.nome + " errou o ataque!");
             }
+            System.out.println("================");
+            System.out.println(this.nome+":"+this.pontosVida);
+            System.out.println(inimigo.nome+":"+inimigo.pontosVida);
         }
 
 
@@ -80,9 +84,8 @@ public abstract class Personagem {
         int valorDado = rolarDado();
         if ((valorDado + this.ataque) > inimigo.defesa) {
             inimigo.pontosVida -= this.ataque + valorDado;
-            System.out.println(this.nome+" rimou e deu " +this.ataque + valorDado+" de dano");
-        }
-        System.out.println(this.nome+" errou a rima!");
+            System.out.println(this.nome+" rimou e deu " +(this.ataque + valorDado)+" de dano");
+        } else System.out.println(this.nome+" errou a rima!");
     }
 
     public void usarItem(Inimigo inimigo) {

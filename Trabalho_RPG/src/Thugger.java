@@ -1,7 +1,7 @@
 public class Thugger extends Personagem {
 
     public Thugger() {
-        super("Thugger", 70, 13, 11);
+        super("Young Thug", 70, 13, 11);
     }
 
     @Override
