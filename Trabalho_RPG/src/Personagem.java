@@ -29,7 +29,7 @@ public abstract class Personagem {
         return this.nome;
     }
 
-    public void batalhar(Inimigo inimigo) {
+    public void batalhar(Inimigo inimigo, boolean podeFugir) {
         while (segueBatalha(inimigo)) {
             System.out.println("1 - Rimar");
             System.out.println("2 - Usar Item");
@@ -44,14 +44,19 @@ public abstract class Personagem {
                     if (!itemFoiUsado) continue;
                 }
                 case 3 -> {
-                    if (run()) {
-                        System.out.println("Você fugiu com sucesso!");
-                        return;
+                    if (podeFugir) {
+                        if (run()) {
+                            System.out.println("Você fugiu com sucesso!");
+                            return;
+                        } else {
+                            System.out.println("Falha ao fugir!");
+                        }
                     } else {
-                        System.out.println("Falha ao fugir!");
+                        System.out.println("Você não pode fugir desta batalha!");
+                        continue;
                     }
                 }
-                default -> System.out.println("Opção Inválida");
+                default -> System.out.println("Opção inválida");
             }
 
             if (inimigo.pontosVida <= 0) break;
@@ -74,7 +79,6 @@ public abstract class Personagem {
             int xpGanho = inimigo.getXpDrop();
             System.out.println(nome + " ganhou " + xpGanho + " XP!");
             ganharXp(xpGanho);
-            this.pontosVida = pontosVidaMax;
         } else {
             System.out.println(inimigo.nome + " venceu a batalha!");
         }
@@ -146,8 +150,6 @@ public abstract class Personagem {
             default -> System.out.println("O item não teve efeito...");
         }
     }
-
-
 
     public boolean run() {
         int tentativa = (int) ((Math.random() * 10)) + 1;
