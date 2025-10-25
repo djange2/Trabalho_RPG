@@ -1,10 +1,20 @@
     public class Inimigo extends Personagem {
+        private int xpDrop;
 
         public Inimigo(String nome, int nivel) {
-            super(nome,80,8,12);
+            super(nome,80,10,12);
             this.nivel = nivel;
             this.inventario = new Inventario();
             ajustarStatsPorNivel();
+            this.xpDrop = calcularXpDrop();
+        }
+
+        private int calcularXpDrop() {
+            return (ataque + defesa + pontosVida / 6);
+        }
+
+        public int getXpDrop() {
+            return xpDrop;
         }
 
         private void ajustarStatsPorNivel() {

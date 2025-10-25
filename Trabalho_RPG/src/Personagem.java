@@ -5,18 +5,24 @@ public abstract class Personagem {
     Scanner scanner = new Scanner(System.in);
     protected String nome;
     protected int pontosVida;
+    protected int pontosVidaMax;
     protected int ataque;
     protected int defesa;
     protected int nivel;
     protected Inventario inventario;
+    protected int xp;
+    protected int xpProximoNivel;
 
     public Personagem(String nome, int pontosVida, int ataque, int defesa) {
         this.nome = nome;
         this.pontosVida = pontosVida;
+        this.pontosVidaMax = pontosVida;
         this.ataque = ataque;
         this.defesa = defesa;
         this.nivel = 1;
         this.inventario = new Inventario();
+        this.xp = 0;
+        this.xpProximoNivel = 100;
     }
 
     public String getNome(){
@@ -33,7 +39,10 @@ public abstract class Personagem {
 
             switch (choice) {
                 case 1 -> rimar(inimigo);
-                case 2 -> usarItem(inimigo);
+                case 2 -> {
+                    boolean itemFoiUsado = usarItem(inimigo);
+                    if (!itemFoiUsado) continue;
+                }
                 case 3 -> {
                     if (run()) {
                         System.out.println("Você fugiu com sucesso!");
@@ -62,7 +71,10 @@ public abstract class Personagem {
 
         if (isNotDerrotado()) {
             System.out.println(this.nome + " venceu a batalha!");
-            aumentarNivel();
+            int xpGanho = inimigo.getXpDrop();
+            System.out.println(nome + " ganhou " + xpGanho + " XP!");
+            ganharXp(xpGanho);
+            this.pontosVida = pontosVidaMax;
         } else {
             System.out.println(inimigo.nome + " venceu a batalha!");
         }
@@ -88,10 +100,10 @@ public abstract class Personagem {
         } else System.out.println(this.nome+" errou a rima!");
     }
 
-    public void usarItem(Inimigo inimigo) {
+    public boolean usarItem(Inimigo inimigo) {
         if (inventario.isEmpty()) {
             System.out.println("Você não tem itens para usar!");
-            return;
+            return false;
         }
 
         System.out.println("Escolha um item para usar:");
@@ -103,7 +115,7 @@ public abstract class Personagem {
         int escolha = scanner.nextByte();
         if (escolha < 1 || escolha > inventario.getItens().size()) {
             System.out.println("Escolha inválida!");
-            return;
+            return false;
         }
 
         Item escolhido = inventario.getItens().get(escolha - 1);
@@ -114,6 +126,7 @@ public abstract class Personagem {
         if (escolhido.getQuantidade() <= 0) {
             inventario.removerItem(escolhido);
         }
+        return true;
     }
 
     private void aplicarEfeitoItem(Item item) {
@@ -141,6 +154,17 @@ public abstract class Personagem {
         return tentativa > 6;
 
     }
+
+    public void ganharXp(int quantidade) {
+        xp += quantidade;
+        while (xp >= xpProximoNivel) {
+            xp -= xpProximoNivel;
+            aumentarNivel();
+            xpProximoNivel += 50;
+            System.out.println(nome + " subiu para o nível " + nivel + "!");
+        }
+    }
+
 
     public abstract void aumentarNivel();
 

@@ -7,7 +7,7 @@ public class Jogo {
         System.out.println("BOAS VINDAS AO RPG DOS RAPPERS!");
         System.out.println("Para iniciarmos, escolha o seu rapper: ");
         System.out.println("1 - Kendrick Lamar\n2 - Drake\n3 - Young Thug");
-        // fazer história
+        //TODO: fazer história
         byte escolha = scanner.nextByte();
         Personagem jogador = null;
         while (jogador == null){
@@ -23,7 +23,6 @@ public class Jogo {
         Inimigo inimigo = new Inimigo("Rapper local", 1);
         System.out.println(jogador.getNome() + " X " + inimigo.getNome());
         jogador.batalhar(inimigo);
-
     }
 
 }
