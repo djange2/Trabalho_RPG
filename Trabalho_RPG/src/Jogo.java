@@ -19,7 +19,7 @@ public class Jogo {
                     System.out.println("As ruas de Chicago estão cheias de rappers querendo provar seu flow. Cuidado!");
             case "Houston" ->
                     System.out.println("Houston é um território brutal. Use seu talento para enfrentar desafios!");
-            case "Atlanta" ->
+            case "Las Vegas" ->
                     System.out.println("As ruas de Las Vegas são frias! DJ Khaled está por aqui...");
             default ->
                     System.out.println("Inválido!");

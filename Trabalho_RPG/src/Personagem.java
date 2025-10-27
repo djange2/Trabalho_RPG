@@ -115,7 +115,6 @@ public abstract class Personagem {
             inimigo.pontosVida -= this.ataque + valorDado;
             System.out.println(this.nome+" rimou e deu " +(this.ataque + valorDado)+" de dano");
         } else System.out.println(this.nome+" errou a rima!");
-        System.out.println(valorDado);
     }
 
     public boolean usarItem(Inimigo inimigo) {
