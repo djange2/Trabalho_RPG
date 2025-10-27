@@ -11,8 +11,28 @@ public class Jogo {
     };
     private Area areaAtual = areas[0];
 
+    private void mostrarNarrativaArea() {
+        switch (areaAtual.getNome()) {
+            case "Seu Bairro" ->
+                    System.out.println("Você está de volta ao seu bairro, onde tudo começou. Hora de praticar suas rimas!");
+            case "Centro de Los Angeles" ->
+                    System.out.println("As ruas de Los Angeles estão cheias de MCs querendo provar seu flow. Cuidado!");
+            case "Centro de Toronto" ->
+                    System.out.println("Toronto é território de Drake. Use seu talento para impressionar ou enfrentar desafios!");
+            case "Atlanta" ->
+                    System.out.println("Atlanta é a cidade do trap! DJ Khaled está por aqui, cuidado com as armadilhas e batalhas!");
+            default ->
+                    System.out.println("Você chegou a uma nova área misteriosa...");
+        }
+    }
+
+
     public void iniciar() {
+        System.out.println("=======================================");
         System.out.println("BOAS VINDAS AO RPG DOS RAPPERS!");
+        System.out.println("Após uma grande treta entre gravadoras, Metro Boomin foi sequestrado por DJ Khaled.");
+        System.out.println("Cabe a você — com suas rimas afiadas e flow mortal — atravessar cidades e resgatar Metro Boomin antes que seja tarde demais!");
+        System.out.println("=======================================");
         System.out.println("Para iniciarmos, escolha o seu rapper:");
         System.out.println("1 - Kendrick Lamar");
         System.out.println("2 - Drake");
@@ -30,11 +50,25 @@ public class Jogo {
             }
         }
 
+        System.out.println("=======================================");
         System.out.println("O jogo começou!");
-        System.out.println("Você está no seu bairro e aparece um menor quente querendo batalhar com você!");
-        Inimigo inimigo = new Inimigo("Rapper local", 1);
-        System.out.println(jogador.getNome() + " X " + inimigo.getNome());
+        System.out.println("Você está no seu bairro, onde tudo começou.");
+        System.out.println("As ruas estão silenciosas... até que alguém se aproxima com um olhar desafiador.");
+        System.out.println("É um MC local querendo testar suas rimas!");
+        System.out.println("Prepare-se para a primeira batalha!");
+        System.out.println("=======================================");
+
+        Inimigo inimigo = new Inimigo("Rapper Local", 1);
+
+        System.out.println("\n" + jogador.getNome() + " X " + inimigo.getNome());
+        System.out.println(inimigo.getNome() + ": \"Acha que consegue rimar comigo? Vamos ver!\"");
+        System.out.println(jogador.getNome() + " se posiciona, sentindo a tensão no ar...");
+        System.out.println("A batalha começa!\n");
+
         jogador.batalhar(inimigo, false);
+
+        System.out.println("\nParabéns! Você venceu sua primeira batalha e começou sua jornada rumo a resgatar Metro Boomin!");
+        System.out.println("Agora, prepare-se para explorar outras áreas e enfrentar desafios cada vez maiores.\n");
 
         loopPrincipal();
     }
@@ -47,7 +81,7 @@ public class Jogo {
 
             switch (opcao) {
                 //case 1 -> encontrarBatalha();
-                //case 2 -> viajar()
+                case 2 -> viajar();
                 case 3 -> verStatus();
                 case 4 -> verInventario();
                 case 5 -> descansar();
@@ -88,6 +122,32 @@ public class Jogo {
         System.out.println(jogador.getNome() + " descansou e recuperou toda a vida!");
     }
 
-    //TODO: ANDERSON OU DANIEL FAVOR FAZER MÉTODO VIAJAR E ENCONTRAR BATALHA
+    private void viajar() {
+        System.out.println("\n===== VIAGEM =====");
+        System.out.println("Áreas disponíveis:");
+
+
+        for (int i = 0; i < areas.length; i++) {
+            System.out.println((i + 1) + " - " + areas[i].getNome());
+        }
+
+        System.out.print("Escolha um destino: ");
+        byte escolha = scanner.nextByte();
+
+        if (escolha < 1 || escolha > areas.length) {
+            System.out.println("Destino inválido!");
+            return;
+        }
+
+
+        areaAtual = areas[escolha - 1];
+        System.out.println("Você viajou para " + areaAtual.getNome() + "!");
+        mostrarNarrativaArea();
+    }
+    // LEMBRAR DEPOIS DE ADICIONAR ALGUM ESQUEMA PARA DESBLOQUEAR AREAS PRA NAO FICAR ESTRANHO JA ESTAR TUDO DESBLOQUEADO
+    // LOGO NO INICIO, PODE SER BASEADO NO NIVEL DO PERSONAGEM, OU APOS UM CERTO NUMERO DE BATALHAS, VAI dai!
+
+
+    //TODO: ANDERSON OU DANIEL FAVOR FAZER MÉTODO ENCONTRAR BATALHA!
     //TODO: VOCES PODEM ADICIONAR NOVAS AREAS OU FAZER MODIFICACOES TBM
 }

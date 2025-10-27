@@ -12,6 +12,8 @@ public abstract class Personagem {
     protected Inventario inventario;
     protected int xp;
     protected int xpProximoNivel;
+    protected boolean poderUsado = false;
+
 
     public Personagem(String nome, int pontosVida, int ataque, int defesa) {
         this.nome = nome;
@@ -30,10 +32,12 @@ public abstract class Personagem {
     }
 
     public void batalhar(Inimigo inimigo, boolean podeFugir) {
+        poderUsado = false;
         while (segueBatalha(inimigo)) {
             System.out.println("1 - Rimar");
             System.out.println("2 - Usar Item");
-            System.out.println("3 - Fugir");
+            System.out.println("3 - Usar Poder Especial");
+            System.out.println("4 - Fugir");
             System.out.print("Digite: ");
             byte choice = scanner.nextByte();
 
@@ -43,7 +47,8 @@ public abstract class Personagem {
                     boolean itemFoiUsado = usarItem(inimigo);
                     if (!itemFoiUsado) continue;
                 }
-                case 3 -> {
+                case 3 -> usarPoderEspecial(inimigo);
+                case 4 -> {
                     if (podeFugir) {
                         if (run()) {
                             System.out.println("Você fugiu com sucesso!");
@@ -170,6 +175,14 @@ public abstract class Personagem {
 
     public abstract void aumentarNivel();
 
+    public void usarPoderEspecial(Inimigo inimigo) {
+        if (poderUsado) {
+            System.out.println("Você já usou seu poder especial nesta batalha!");
+            return;
+        }
+        poderUsado = true;
+        System.out.println(this.nome + " não tem nenhum poder especial!");
+    }
 
     @Override
     public String toString() {
