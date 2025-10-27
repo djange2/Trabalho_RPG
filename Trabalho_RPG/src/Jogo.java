@@ -4,10 +4,10 @@ public class Jogo {
     private Scanner scanner = new Scanner(System.in);
     private Personagem jogador;
     private Area[] areas = {
-            new Area("Seu Bairro"),
-            new Area("Centro de Los Angeles"),
-            new Area("Centro de Toronto"),
-            new Area("Atlanta")
+            new Area("Seu Bairro",1),
+            new Area("Chicago",3),
+            new Area("Houston",5),
+            new Area("Las Vegas",8)
     };
     private Area areaAtual = areas[0];
 
@@ -15,17 +15,16 @@ public class Jogo {
         switch (areaAtual.getNome()) {
             case "Seu Bairro" ->
                     System.out.println("Você está de volta ao seu bairro, onde tudo começou. Hora de praticar suas rimas!");
-            case "Centro de Los Angeles" ->
-                    System.out.println("As ruas de Los Angeles estão cheias de MCs querendo provar seu flow. Cuidado!");
-            case "Centro de Toronto" ->
-                    System.out.println("Toronto é território de Drake. Use seu talento para impressionar ou enfrentar desafios!");
+            case "Chicago" ->
+                    System.out.println("As ruas de Chicago estão cheias de rappers querendo provar seu flow. Cuidado!");
+            case "Houston" ->
+                    System.out.println("Houston é um território brutal. Use seu talento para enfrentar desafios!");
             case "Atlanta" ->
-                    System.out.println("Atlanta é a cidade do trap! DJ Khaled está por aqui, cuidado com as armadilhas e batalhas!");
+                    System.out.println("As ruas de Las Vegas são frias! DJ Khaled está por aqui...");
             default ->
-                    System.out.println("Você chegou a uma nova área misteriosa...");
+                    System.out.println("Inválido!");
         }
     }
-
 
     public void iniciar() {
         System.out.println("=======================================");
@@ -126,28 +125,24 @@ public class Jogo {
         System.out.println("\n===== VIAGEM =====");
         System.out.println("Áreas disponíveis:");
 
-
         for (int i = 0; i < areas.length; i++) {
-            System.out.println((i + 1) + " - " + areas[i].getNome());
+            if (jogador.nivel >= areas[i].getMinLvl()) {
+                System.out.println((i + 1) + " - " + areas[i].getNome());
+            }
         }
 
         System.out.print("Escolha um destino: ");
         byte escolha = scanner.nextByte();
 
-        if (escolha < 1 || escolha > areas.length) {
+        if (escolha < 1 || escolha > areas.length || jogador.nivel < areas[escolha - 1].getMinLvl()) {
             System.out.println("Destino inválido!");
             return;
         }
-
-
+        if (areaAtual == areas[escolha - 1]) {
+            System.out.println("Você já está nessa área!");
+            return;
+        }
         areaAtual = areas[escolha - 1];
-        System.out.println("Você viajou para " + areaAtual.getNome() + "!");
         mostrarNarrativaArea();
     }
-    // LEMBRAR DEPOIS DE ADICIONAR ALGUM ESQUEMA PARA DESBLOQUEAR AREAS PRA NAO FICAR ESTRANHO JA ESTAR TUDO DESBLOQUEADO
-    // LOGO NO INICIO, PODE SER BASEADO NO NIVEL DO PERSONAGEM, OU APOS UM CERTO NUMERO DE BATALHAS, VAI dai!
-
-
-    //TODO: ANDERSON OU DANIEL FAVOR FAZER MÉTODO ENCONTRAR BATALHA!
-    //TODO: VOCES PODEM ADICIONAR NOVAS AREAS OU FAZER MODIFICACOES TBM
 }

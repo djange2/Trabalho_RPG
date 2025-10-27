@@ -4,13 +4,15 @@ public class Item implements Comparable<Item>, Cloneable {
     private  String nome;
     private String descricao;
     private String efeito;
+    private int valorEfeito;
     private int quantidade;
 
-    public Item(String nome, String descricao, String efeito,  int quantidade) {
+    public Item(String nome, String descricao, String efeito,  int quantidade, int valorEfeito) {
         this.nome = nome;
         this.descricao = descricao;
         this.efeito = efeito;
         this.quantidade = quantidade;
+        this.valorEfeito = valorEfeito;
     }
 
     @Override
@@ -20,7 +22,6 @@ public class Item implements Comparable<Item>, Cloneable {
 
     public String getNome() {return nome;}
 
-    public void setNome(String nome) {this.nome = nome;}
     public int getQuantidade() {return quantidade;}
     public void setQuantidade(int quantidade) {this.quantidade = quantidade;}
     public String getEfeito() {return efeito;}
@@ -47,7 +48,6 @@ public class Item implements Comparable<Item>, Cloneable {
         ret = ret * 2 + this.nome.hashCode();
         ret = ret * 2 + this.descricao.hashCode();
         ret = ret * 2 + this.efeito.hashCode();
-        ret = ret * 2 + ((Integer)this.quantidade).hashCode();
         return ret;
     }
 
@@ -57,6 +57,7 @@ public class Item implements Comparable<Item>, Cloneable {
         this.descricao = novo.descricao;
         this.efeito = novo.efeito;
         this.quantidade = novo.quantidade;
+        this.valorEfeito = novo.valorEfeito;
     }
 
     @Override

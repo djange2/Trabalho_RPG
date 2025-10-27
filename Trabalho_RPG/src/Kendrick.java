@@ -1,7 +1,8 @@
 public class Kendrick extends Personagem {
 
     public Kendrick() {
-        super("Kendrick",90,12,13);
+        super("Kendrick",90,11,12);
+        poderUsado = false;
     }
 
     @Override
@@ -14,10 +15,16 @@ public class Kendrick extends Personagem {
 
     @Override
     public void usarPoderEspecial(Inimigo inimigo) {
-        System.out.println(" Kendrick ativa o 'DAMN. Flow'! O inimigo fica abalado psicologicamente!");
-        inimigo.ataque -= 3;
-        if (inimigo.ataque < 0) inimigo.ataque = 0;
-        System.out.println(inimigo.getNome() + " perdeu parte do poder de ataque!");
+        if (poderUsado) {
+            System.out.println("Você já usou seu poder especial!");
+            return;
+        }
+        System.out.println(" Kendrick ativa o 'DAMN. Flow'! Ele preparou um ataque duplo!");
+        rimar(inimigo);
+        inimigo.defesa +=5;
+        rimar(inimigo);
+        inimigo.defesa -=5;
+        poderUsado = true;
     }
 
 }

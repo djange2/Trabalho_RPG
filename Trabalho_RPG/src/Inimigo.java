@@ -2,7 +2,7 @@
         private int xpDrop;
 
         public Inimigo(String nome, int nivel) {
-            super(nome,80,10,12);
+            super(nome,80,9,12);
             this.nivel = nivel;
             this.inventario = new Inventario();
             ajustarStatsPorNivel();

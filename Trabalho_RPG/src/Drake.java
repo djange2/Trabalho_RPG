@@ -1,7 +1,8 @@
 public class Drake extends Personagem {
 
     public Drake() {
-        super("Drake",110  ,9,14);
+        super("Drake",110,9,14);
+        poderUsado = false;
     }
 
     @Override
@@ -13,20 +14,16 @@ public class Drake extends Personagem {
     }
     @Override
     public void usarPoderEspecial(Inimigo inimigo) {
-        System.out.println(" Drake ativa 'God’s Plan'! Seu ataque aumenta temporariamente!");
+        if (poderUsado) {
+            System.out.println("Você já usou seu poder especial!");
+            return;
+        }
+        System.out.println(" Drake ativa 'God’s Plan'! Seu ataque aumentou nesse turno!");
         int ataqueOriginal = this.ataque;
         this.ataque += 6;
-
-        int valorDado = rolarDado();
-        int dano = this.ataque + valorDado - inimigo.defesa;
-        if (dano > 0) {
-            inimigo.pontosVida -= dano;
-            System.out.println("Drake solta um verso lendário e causa " + dano + " de dano!");
-        } else {
-            System.out.println("Drake tentou rimar, mas o inimigo rebateu!");
-        }
-
-        this.ataque = ataqueOriginal; // volta ao normal depois
+        rimar(inimigo);
+        this.ataque = ataqueOriginal;
+        poderUsado = true;
     }
 
 }

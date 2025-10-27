@@ -8,11 +8,24 @@ public class Inventario implements Cloneable{
     }
 
     public void adicionarItem(Item novo) {
-        itens.add(novo);
+        for (Item item : itens) {
+            if (item.getNome().equals(novo.getNome())) {
+                item.setQuantidade(item.getQuantidade() + novo.getQuantidade());
+                return;
+            }
+        }
+        itens.add(novo.clone());
     }
 
     public void removerItem(Item item) {
-        itens.remove(item);
+        for (int i = 0; i < itens.size(); i++) {
+            Item atual = itens.get(i);
+            if (atual.getNome().equals(item.getNome())) {
+                atual.setQuantidade(atual.getQuantidade() - item.getQuantidade());
+                if (atual.getQuantidade() == 0) itens.remove(i);
+                break;
+            }
+        }
     }
 
     public ArrayList<Item> getItens() {

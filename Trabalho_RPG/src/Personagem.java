@@ -47,7 +47,14 @@ public abstract class Personagem {
                     boolean itemFoiUsado = usarItem(inimigo);
                     if (!itemFoiUsado) continue;
                 }
-                case 3 -> usarPoderEspecial(inimigo);
+                case 3 -> {
+                    if (poderUsado) {
+                        System.out.println("Você já usou seu poder especial nessa batalha!");
+                        continue;
+                    }
+                    usarPoderEspecial(inimigo);
+                }
+
                 case 4 -> {
                     if (podeFugir) {
                         if (run()) {
@@ -74,8 +81,8 @@ public abstract class Personagem {
                 System.out.println(inimigo.nome + " errou o ataque!");
             }
             System.out.println("================");
-            System.out.println(this.nome+":"+this.pontosVida);
-            System.out.println(inimigo.nome+":"+inimigo.pontosVida);
+            System.out.println(this.nome + ": " + (this.pontosVida < 0 ? 0 : this.pontosVida));
+            System.out.println(inimigo.nome + ": " + (inimigo.pontosVida < 0 ? 0 : inimigo.pontosVida));
         }
 
 
@@ -85,7 +92,8 @@ public abstract class Personagem {
             System.out.println(nome + " ganhou " + xpGanho + " XP!");
             ganharXp(xpGanho);
         } else {
-            System.out.println(inimigo.nome + " venceu a batalha!");
+            System.out.println(inimigo.nome + " venceu a batalha! As ruas não te respeitam mais...");
+            System.exit(0);
         }
     }
 
@@ -107,6 +115,7 @@ public abstract class Personagem {
             inimigo.pontosVida -= this.ataque + valorDado;
             System.out.println(this.nome+" rimou e deu " +(this.ataque + valorDado)+" de dano");
         } else System.out.println(this.nome+" errou a rima!");
+        System.out.println(valorDado);
     }
 
     public boolean usarItem(Inimigo inimigo) {
@@ -172,16 +181,9 @@ public abstract class Personagem {
         }
     }
 
-
     public abstract void aumentarNivel();
 
     public void usarPoderEspecial(Inimigo inimigo) {
-        if (poderUsado) {
-            System.out.println("Você já usou seu poder especial nesta batalha!");
-            return;
-        }
-        poderUsado = true;
-        System.out.println(this.nome + " não tem nenhum poder especial!");
     }
 
     @Override
