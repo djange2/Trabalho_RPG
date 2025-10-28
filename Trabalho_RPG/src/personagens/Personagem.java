@@ -1,4 +1,8 @@
-import java.sql.SQLOutput;
+package personagens;
+
+import itens.Inventario;
+import itens.Item;
+
 import java.util.Scanner;
 
 public abstract class Personagem {
@@ -27,9 +31,36 @@ public abstract class Personagem {
         this.xpProximoNivel = 100;
     }
 
-    public String getNome(){
-        return this.nome;
+    public String getNome() { return nome; }
+    public int getPontosVida() { return pontosVida; }
+    public int getPontosVidaMax() { return pontosVidaMax; }
+    public int getAtaque() { return ataque; }
+    public int getDefesa() { return defesa; }
+    public int getNivel() { return nivel; }
+    public Inventario getInventario() { return inventario; }
+    public int getXp() { return xp; }
+    public int getXpProximoNivel() { return xpProximoNivel; }
+    public boolean isPoderUsado() { return poderUsado; }
+
+    public void setPontosVida(int pontosVida) {
+        if (pontosVida < 0) {
+            this.pontosVida = 0;
+        } else if (pontosVida > pontosVidaMax) {
+            this.pontosVida = pontosVidaMax;
+        } else {
+            this.pontosVida = pontosVida;
+        }
     }
+    public void setAtaque(int ataque) { this.ataque = ataque; }
+    public void setDefesa(int defesa) { this.defesa = defesa; }
+
+    public void setNivel(int nivel) { this.nivel = nivel; }
+
+    public void recuperarVida(int quantidade) {
+        setPontosVida(this.pontosVida + quantidade);
+    }
+
+    public void usarPoder() { this.poderUsado = true; }
 
     public void batalhar(Inimigo inimigo, boolean podeFugir) {
         poderUsado = false;

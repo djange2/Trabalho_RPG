@@ -1,3 +1,5 @@
+package personagens;
+
 public class Kendrick extends Personagem {
 
     public Kendrick() {

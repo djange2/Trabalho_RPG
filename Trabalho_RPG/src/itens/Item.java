@@ -1,3 +1,5 @@
+package itens;
+
 import java.util.Objects;
 
 public class Item implements Comparable<Item>, Cloneable {

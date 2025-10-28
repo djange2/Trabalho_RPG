@@ -1,3 +1,5 @@
+package areas;
+
 public class Area {
     private String nome;
     private int minLvl;

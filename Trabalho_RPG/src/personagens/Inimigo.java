@@ -1,4 +1,8 @@
-    public class Inimigo extends Personagem {
+package personagens;
+
+import itens.Inventario;
+
+public class Inimigo extends Personagem {
         private int xpDrop;
 
         public Inimigo(String nome, int nivel) {

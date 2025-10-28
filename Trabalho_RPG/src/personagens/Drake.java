@@ -1,3 +1,5 @@
+package personagens;
+
 public class Drake extends Personagem {
 
     public Drake() {

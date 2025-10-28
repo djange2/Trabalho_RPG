@@ -1,3 +1,5 @@
+package itens;
+
 import java.util.*;
 
 public class Inventario implements Cloneable{
@@ -29,7 +31,7 @@ public class Inventario implements Cloneable{
     }
 
     public ArrayList<Item> getItens() {
-        return (ArrayList<Item>) itens;
+        return new ArrayList<>(itens);
     }
 
     public Inventario (Inventario mod) throws Exception{
@@ -49,7 +51,7 @@ public class Inventario implements Cloneable{
 
     @Override
     public boolean equals(Object obj){
-        if (obj == this) return false;
+        if (obj == this) return true;
         if (obj == null) return false;
         if (this.getClass() != obj.getClass()) return false;
         Inventario i = (Inventario) obj;

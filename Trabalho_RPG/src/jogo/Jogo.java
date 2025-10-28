@@ -1,3 +1,8 @@
+package jogo;
+
+import areas.Area;
+import personagens.*;
+
 import java.util.Scanner;
 
 public class Jogo {
@@ -101,23 +106,23 @@ public class Jogo {
 
     private void verStatus() {
         System.out.println("\n===== STATUS =====");
-        System.out.println(jogador.nome);
-        System.out.println("Vida: " + jogador.pontosVida + "/" + jogador.pontosVidaMax);
+        System.out.println(jogador.getNome());
+        System.out.println("Vida: " + jogador.getPontosVida() + "/" + jogador.getPontosVidaMax());
         System.out.println("==================");
     }
 
     private void verInventario() {
-        if (jogador.inventario.getItens().isEmpty()) {
+        if (jogador.getInventario().getItens().isEmpty()) {
             System.out.println("================");
             System.out.println("Seu inventário está vazio.");
             return;
         }
         System.out.println("\n===== INVENTÁRIO =====");
-        System.out.println(jogador.inventario.getItens());
+        System.out.println(jogador.getInventario().getItens());
     }
 
     private void descansar() {
-        jogador.pontosVida = jogador.pontosVidaMax;
+        jogador.setPontosVida(jogador.getPontosVidaMax());
         System.out.println(jogador.getNome() + " descansou e recuperou toda a vida!");
     }
 
@@ -126,7 +131,7 @@ public class Jogo {
         System.out.println("Áreas disponíveis:");
 
         for (int i = 0; i < areas.length; i++) {
-            if (jogador.nivel >= areas[i].getMinLvl()) {
+            if (jogador.getNivel() >= areas[i].getMinLvl()) {
                 System.out.println((i + 1) + " - " + areas[i].getNome());
             }
         }
@@ -134,7 +139,7 @@ public class Jogo {
         System.out.print("Escolha um destino: ");
         byte escolha = scanner.nextByte();
 
-        if (escolha < 1 || escolha > areas.length || jogador.nivel < areas[escolha - 1].getMinLvl()) {
+        if (escolha < 1 || escolha > areas.length || jogador.getNivel() < areas[escolha - 1].getMinLvl()) {
             System.out.println("Destino inválido!");
             return;
         }
@@ -144,5 +149,11 @@ public class Jogo {
         }
         areaAtual = areas[escolha - 1];
         mostrarNarrativaArea();
+    }
+
+    private void encontrarBatalha() {
+        if (jogador.getNivel() == 1) {
+            Inimigo inimigo = new Inimigo("Rapper Local", 1 );
+        }
     }
 }

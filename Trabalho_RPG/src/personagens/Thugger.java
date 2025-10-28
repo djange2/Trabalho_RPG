@@ -1,3 +1,5 @@
+package personagens;
+
 public class Thugger extends Personagem {
 
     public Thugger() {
