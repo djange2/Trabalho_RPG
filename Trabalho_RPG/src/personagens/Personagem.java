@@ -180,16 +180,16 @@ public abstract class Personagem {
     private void aplicarEfeitoItem(Item item) {
         switch (item.getEfeito().toLowerCase()) {
             case "cura" -> {
-                pontosVida += 10;
-                System.out.println(nome + " usou " + item.getNome() + " e recuperou 10 pontos de vida!");
+                pontosVida += item.getValorEfeito();
+                System.out.println(nome + " usou " + item.getNome() + " e recuperou "+item.getValorEfeito()+ "pontos de vida!");
             }
             case "ataque" -> {
-                ataque += 2;
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou o ataque em 2!");
+                ataque += item.getValorEfeito();
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou o ataque em "+item.getValorEfeito()+"!");
             }
             case "defesa" -> {
-                defesa += 2;
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em 2!");
+                defesa += item.getValorEfeito();
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou o defesa em "+item.getValorEfeito()+"!");
             }
             default -> System.out.println("O item não teve efeito...");
         }

@@ -20,11 +20,11 @@ public class Drake extends Personagem {
             System.out.println("Você já usou seu poder especial!");
             return;
         }
-        System.out.println(" Drake ativa 'God’s Plan'! Seu ataque aumentou nesse turno!");
-        int ataqueOriginal = this.ataque;
-        this.ataque += 6;
+        System.out.println(" Drake ativa 'God’s Plan'! Ele preparou um ataque duplo!");
         rimar(inimigo);
-        this.ataque = ataqueOriginal;
+        inimigo.defesa +=3;
+        rimar(inimigo);
+        inimigo.defesa -=3;
         poderUsado = true;
     }
 

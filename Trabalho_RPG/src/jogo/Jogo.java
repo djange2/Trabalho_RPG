@@ -2,6 +2,10 @@ package jogo;
 
 import areas.Area;
 import personagens.*;
+import personagens.Drake;
+import personagens.Inimigo;
+import personagens.Kendrick;
+import personagens.Thugger;
 
 import java.util.Scanner;
 
@@ -108,6 +112,7 @@ public class Jogo {
         System.out.println("\n===== STATUS =====");
         System.out.println(jogador.getNome());
         System.out.println("Vida: " + jogador.getPontosVida() + "/" + jogador.getPontosVidaMax());
+        System.out.println("Nível: "+ jogador.getNivel());
         System.out.println("==================");
     }
 

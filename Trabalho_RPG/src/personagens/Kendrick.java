@@ -21,11 +21,11 @@ public class Kendrick extends Personagem {
             System.out.println("Você já usou seu poder especial!");
             return;
         }
-        System.out.println(" Kendrick ativa o 'DAMN. Flow'! Ele preparou um ataque duplo!");
+        System.out.println("Kendrick ativa 'Euphoria'! Seu ataque aumentou nesse turno!");
+        int ataqueOriginal = this.ataque;
+        this.ataque += 5;
         rimar(inimigo);
-        inimigo.defesa +=5;
-        rimar(inimigo);
-        inimigo.defesa -=5;
+        this.ataque = ataqueOriginal;
         poderUsado = true;
     }
 

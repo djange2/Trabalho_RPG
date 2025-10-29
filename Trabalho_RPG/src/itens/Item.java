@@ -27,6 +27,7 @@ public class Item implements Comparable<Item>, Cloneable {
     public int getQuantidade() {return quantidade;}
     public void setQuantidade(int quantidade) {this.quantidade = quantidade;}
     public String getEfeito() {return efeito;}
+    public int getValorEfeito() {return valorEfeito;}
 
     @Override
     public boolean equals(Object obj) {
