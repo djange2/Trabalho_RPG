@@ -21,16 +21,12 @@ public class Thugger extends Personagem {
             System.out.println("Você já usou seu poder especial!");
             return;
         }
-        System.out.println(" Thugger entra no 'Slime Mode'! Ele se regenera com o poder do trap!");
-        int cura = (int) (pontosVidaMax*0.3);
-        this.pontosVida += cura;
-        if (this.pontosVida > this.pontosVidaMax)
-            this.pontosVida = this.pontosVidaMax;
-
-        System.out.println("Thugger recuperou " + cura + " de vida!");
+        System.out.println("Young Thug entra no 'Slime Mode'! Ele preparou um ataque duplo!");
+        rimar(inimigo);
+        inimigo.defesa +=5;
+        rimar(inimigo);
+        inimigo.defesa -=5;
         poderUsado = true;
-
     }
-
 }
 

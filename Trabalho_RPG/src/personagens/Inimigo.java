@@ -31,7 +31,7 @@ public class Inimigo extends Personagem {
         }
 
         private int calcularXpDrop() {
-            return (ataque + defesa + pontosVida / 6);
+            return (ataque + defesa + pontosVida / 4);
         }
 
         public int getXpDrop() {
@@ -42,8 +42,8 @@ public class Inimigo extends Personagem {
             if (this.nivel == 1) return;
             int lvlups = nivel - 1;
             this.pontosVida += 4 * lvlups;
-            this.ataque += lvlups;
-            this.defesa += lvlups;
+            this.ataque += 2 *lvlups;
+            this.defesa += 2 * lvlups;
         }
 
         @Override

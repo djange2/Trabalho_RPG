@@ -42,9 +42,9 @@ public class Jogo {
         System.out.println("Cabe a você — com suas rimas afiadas e flow mortal — atravessar cidades e resgatar Metro Boomin antes que seja tarde demais!");
         System.out.println("=======================================");
         System.out.println("Para iniciarmos, escolha o seu rapper:");
-        System.out.println("1 - Kendrick Lamar");
-        System.out.println("2 - Drake");
-        System.out.println("3 - Young Thug");
+        System.out.println("1 - Kendrick Lamar (Equilibrado)");
+        System.out.println("2 - Drake (Defensivo)");
+        System.out.println("3 - Young Thug (Ofensivo)");
 
         while (jogador == null) {
             System.out.print("Digite sua escolha: ");
@@ -85,6 +85,7 @@ public class Jogo {
         for (;;) {
             menu();
             System.out.print("Escolha: ");
+            descansar();
             byte opcao = scanner.nextByte();
 
             switch (opcao) {
@@ -92,7 +93,6 @@ public class Jogo {
                 case 2 -> viajar();
                 case 3 -> verStatus();
                 case 4 -> verInventario();
-                case 5 -> descansar();
                 default -> System.out.println("Opção inválida!");
             }
         }
@@ -105,7 +105,6 @@ public class Jogo {
         System.out.println("2 - Viajar");
         System.out.println("3 - Ver Status");
         System.out.println("4 - Ver Inventário");
-        System.out.println("5 - Descansar");
     }
 
     private void verStatus() {
@@ -129,7 +128,6 @@ public class Jogo {
 
     private void descansar() {
         jogador.setPontosVida(jogador.getPontosVidaMax());
-        System.out.println(jogador.getNome() + " descansou e recuperou toda a vida!");
     }
 
 
@@ -160,19 +158,19 @@ public class Jogo {
 
     private void encontrarBatalha() {
         if (areaAtual == areas[0]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * 3) + 1);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * 2) + 1);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[1]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (7 - 5 + 1)) + 5);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (5 - 3 + 1)) + 3);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[2]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (10 - 7 + 1)) + 7);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (9 - 6 + 1)) + 6);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[3]) {
-            Inimigo inimigo = new Inimigo("DJ Khaled", 15);
+            Inimigo inimigo = new Inimigo("DJ Khaled", 20);
             jogador.batalhar(inimigo,false);
         }
     }

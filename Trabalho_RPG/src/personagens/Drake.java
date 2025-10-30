@@ -14,19 +14,22 @@ public class Drake extends Personagem {
         this.ataque += 2;
         this.defesa += 2;
     }
+
     @Override
     public void usarPoderEspecial(Inimigo inimigo) {
         if (poderUsado) {
             System.out.println("Você já usou seu poder especial!");
             return;
         }
-        System.out.println(" Drake ativa 'God’s Plan'! Ele preparou um ataque duplo!");
-        rimar(inimigo);
-        inimigo.defesa +=3;
-        rimar(inimigo);
-        inimigo.defesa -=3;
-        poderUsado = true;
-    }
+        System.out.println(" Drake ativa 'God’s Plan'! Ele regenerou sua vida!");
+        int cura = (int) (pontosVidaMax*0.25);
+        this.pontosVida += cura;
+        if (this.pontosVida > this.pontosVidaMax)
+            this.pontosVida = this.pontosVidaMax;
 
+        System.out.println("Thugger recuperou " + cura + " de vida!");
+        poderUsado = true;
+
+    }
 }
 

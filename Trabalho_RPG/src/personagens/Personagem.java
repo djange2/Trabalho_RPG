@@ -180,7 +180,7 @@ public abstract class Personagem {
 
         Item escolhido = inventario.getItens().get(escolha - 1);
 
-        aplicarEfeitoItem(escolhido);
+        aplicarEfeitoItem(escolhido, inimigo);
 
         escolhido.setQuantidade(escolhido.getQuantidade() - 1);
         if (escolhido.getQuantidade() <= 0) {
@@ -189,39 +189,35 @@ public abstract class Personagem {
         return true;
     }
 
-    private void aplicarEfeitoItem(Item item) {
+    private void aplicarEfeitoItem(Item item, Inimigo inimigo) {
         switch (item.getEfeito().toLowerCase()) {
             case "cura" -> {
                 pontosVida += item.getValorEfeito();
                 if (pontosVida > pontosVidaMax) pontosVida = pontosVidaMax;
-                System.out.println(nome + " usou " + item.getNome() + " e recuperou "+item.getValorEfeito()+ " pontos de vida!");
+                System.out.println(nome + " usou " + item.getNome() + " e recuperou " + item.getValorEfeito() + " pontos de vida!");
             }
             case "ataque" -> {
-                int aumentoMax = (int) (this.ataqueBaseBatalha * 0.3);
-                int aumentoPermitido = Math.min(item.getValorEfeito(), aumentoMax);
-                this.ataque += aumentoPermitido;
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou o ataque em " + aumentoPermitido + "!");
-                if (aumentoPermitido < item.getValorEfeito()) {
-                    System.out.println("O aumento do ataque atingiu o limite máximo!");
+                if (this.ataque + item.getValorEfeito() > inimigo.getDefesa() + 9) {
+                    this.ataque = inimigo.getDefesa() + 9;
+                } else {
+                    this.ataque += item.getValorEfeito();
                 }
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou o ataque!");
             }
             case "defesa" -> {
-                int aumentoMax = (int) (this.defesaBaseBatalha * 0.3);
-                int aumentoPermitido = Math.min(item.getValorEfeito(), aumentoMax);
-                this.defesa += aumentoPermitido;
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em " + aumentoPermitido + "!");
-                if (aumentoPermitido < item.getValorEfeito()) {
-                    System.out.println("O aumento da defesa atingiu o limite máximo!");
+                if (this.defesa + item.getValorEfeito() > inimigo.getAtaque() + 10) {
+                    this.defesa = inimigo.getAtaque() + 8;
+                } else {
+                    this.defesa += item.getValorEfeito();
                 }
             }
-            default -> System.out.println("O item não teve efeito...");
+            default -> System.out.println("");
         }
     }
 
-
     public boolean run() {
         int tentativa = (int) ((Math.random() * 10)) + 1;
-        return tentativa > 6;
+        return tentativa > 7;
 
     }
 
@@ -230,7 +226,7 @@ public abstract class Personagem {
         while (xp >= xpProximoNivel) {
             xp -= xpProximoNivel;
             aumentarNivel();
-            xpProximoNivel += 50;
+            xpProximoNivel += 25;
             System.out.println(nome + " subiu para o nível " + nivel + "!");
         }
     }

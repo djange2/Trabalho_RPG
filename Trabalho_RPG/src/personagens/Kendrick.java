@@ -23,7 +23,7 @@ public class Kendrick extends Personagem {
         }
         System.out.println("Kendrick ativa 'Euphoria'! Seu ataque aumentou nesse turno!");
         int ataqueOriginal = this.ataque;
-        this.ataque += 5;
+        this.ataque += 10;
         rimar(inimigo);
         this.ataque = ataqueOriginal;
         poderUsado = true;
