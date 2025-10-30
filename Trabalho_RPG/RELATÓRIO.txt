@@ -1,0 +1,6 @@
+Anderson - - Nota:
+
+Daniel Henrique Inoue Jange - 24006321 - Nota: 9
+Iniciei o trabalho criando as principais classes e os métodos padrão delas (toString,hashCode, construtor, construtor de cópia, clone e alguns getter e setters, equals e compareTo), fiz o método de ataque.
+
+Igor Ribeiro Cunha - - Nota:
