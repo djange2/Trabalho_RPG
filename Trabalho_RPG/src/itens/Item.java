@@ -8,13 +8,15 @@ public class Item implements Comparable<Item>, Cloneable {
     private String efeito;
     private int valorEfeito;
     private int quantidade;
+    private int raridade;
 
-    public Item(String nome, String descricao, String efeito,  int quantidade, int valorEfeito) {
+    public Item(String nome, String descricao, String efeito,  int quantidade, int valorEfeito, int raridade) {
         this.nome = nome;
         this.descricao = descricao;
         this.efeito = efeito;
         this.quantidade = quantidade;
         this.valorEfeito = valorEfeito;
+        this.raridade = raridade; //1 - comum, 2 - raro, 3 - épico
     }
 
     @Override
@@ -28,6 +30,7 @@ public class Item implements Comparable<Item>, Cloneable {
     public void setQuantidade(int quantidade) {this.quantidade = quantidade;}
     public String getEfeito() {return efeito;}
     public int getValorEfeito() {return valorEfeito;}
+    public int getRaridade() {return raridade;}
 
     @Override
     public boolean equals(Object obj) {
@@ -71,5 +74,6 @@ public class Item implements Comparable<Item>, Cloneable {
         } catch (Exception erro) {}
         return ret;
     }
+
 
 }

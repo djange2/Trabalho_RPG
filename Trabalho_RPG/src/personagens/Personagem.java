@@ -3,6 +3,7 @@ package personagens;
 import itens.Inventario;
 import itens.Item;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public abstract class Personagem {
@@ -17,6 +18,8 @@ public abstract class Personagem {
     protected int xp;
     protected int xpProximoNivel;
     protected boolean poderUsado = false;
+    protected int ataqueBaseBatalha;
+    protected int defesaBaseBatalha;
 
 
     public Personagem(String nome, int pontosVida, int ataque, int defesa) {
@@ -29,6 +32,8 @@ public abstract class Personagem {
         this.inventario = new Inventario();
         this.xp = 0;
         this.xpProximoNivel = 100;
+        this.ataqueBaseBatalha = ataque;
+        this.defesaBaseBatalha = defesa;
     }
 
     public String getNome() { return nome; }
@@ -53,18 +58,17 @@ public abstract class Personagem {
     }
     public void setAtaque(int ataque) { this.ataque = ataque; }
     public void setDefesa(int defesa) { this.defesa = defesa; }
-
     public void setNivel(int nivel) { this.nivel = nivel; }
-
-    public void recuperarVida(int quantidade) {
-        setPontosVida(this.pontosVida + quantidade);
-    }
-
-    public void usarPoder() { this.poderUsado = true; }
 
     public void batalhar(Inimigo inimigo, boolean podeFugir) {
         poderUsado = false;
+
+        this.ataqueBaseBatalha = ataque;
+        this.defesaBaseBatalha = defesa;
+
         while (segueBatalha(inimigo)) {
+            System.out.println(this.nome + ": " + (this.pontosVida < 0 ? 0 : this.pontosVida) + " | Nível " + this.nivel);
+            System.out.println(inimigo.nome + ": " + (inimigo.pontosVida < 0 ? 0 : inimigo.pontosVida) + " | Nível " + inimigo.nivel);
             System.out.println("1 - Rimar");
             System.out.println("2 - Usar Item");
             System.out.println("3 - Usar Poder Especial");
@@ -112,16 +116,17 @@ public abstract class Personagem {
                 System.out.println(inimigo.nome + " errou o ataque!");
             }
             System.out.println("================");
-            System.out.println(this.nome + ": " + (this.pontosVida < 0 ? 0 : this.pontosVida));
-            System.out.println(inimigo.nome + ": " + (inimigo.pontosVida < 0 ? 0 : inimigo.pontosVida));
         }
 
 
         if (isNotDerrotado()) {
+            this.ataque = ataqueBaseBatalha;
+            this.defesa = defesaBaseBatalha;
             System.out.println(this.nome + " venceu a batalha!");
             int xpGanho = inimigo.getXpDrop();
             System.out.println(nome + " ganhou " + xpGanho + " XP!");
             ganharXp(xpGanho);
+            drop(inimigo);
         } else {
             System.out.println(inimigo.nome + " venceu a batalha! As ruas não te respeitam mais...");
             System.exit(0);
@@ -146,6 +151,7 @@ public abstract class Personagem {
             inimigo.pontosVida -= this.ataque + valorDado;
             System.out.println(this.nome+" rimou e deu " +(this.ataque + valorDado)+" de dano");
         } else System.out.println(this.nome+" errou a rima!");
+        System.out.println(valorDado);
     }
 
     public boolean usarItem(Inimigo inimigo) {
@@ -155,13 +161,19 @@ public abstract class Personagem {
         }
 
         System.out.println("Escolha um item para usar:");
+        System.out.println("0 - Voltar");
         for (int i = 0; i < inventario.getItens().size(); i++) {
             Item item = inventario.getItens().get(i);
             System.out.println((i + 1) + " - " + item.getNome() + " (" + item.getQuantidade() + ")");
         }
 
         int escolha = scanner.nextByte();
-        if (escolha < 1 || escolha > inventario.getItens().size()) {
+        if (escolha == 0) {
+            System.out.println("Voltando ao menu de batalha...");
+            return false;
+        }
+
+        if (escolha < 0 || escolha > inventario.getItens().size()) {
             System.out.println("Escolha inválida!");
             return false;
         }
@@ -181,19 +193,31 @@ public abstract class Personagem {
         switch (item.getEfeito().toLowerCase()) {
             case "cura" -> {
                 pontosVida += item.getValorEfeito();
-                System.out.println(nome + " usou " + item.getNome() + " e recuperou "+item.getValorEfeito()+ "pontos de vida!");
+                if (pontosVida > pontosVidaMax) pontosVida = pontosVidaMax;
+                System.out.println(nome + " usou " + item.getNome() + " e recuperou "+item.getValorEfeito()+ " pontos de vida!");
             }
             case "ataque" -> {
-                ataque += item.getValorEfeito();
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou o ataque em "+item.getValorEfeito()+"!");
+                int aumentoMax = (int) (this.ataqueBaseBatalha * 0.3);
+                int aumentoPermitido = Math.min(item.getValorEfeito(), aumentoMax);
+                this.ataque += aumentoPermitido;
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou o ataque em " + aumentoPermitido + "!");
+                if (aumentoPermitido < item.getValorEfeito()) {
+                    System.out.println("O aumento do ataque atingiu o limite máximo!");
+                }
             }
             case "defesa" -> {
-                defesa += item.getValorEfeito();
-                System.out.println(nome + " usou " + item.getNome() + " e aumentou o defesa em "+item.getValorEfeito()+"!");
+                int aumentoMax = (int) (this.defesaBaseBatalha * 0.3);
+                int aumentoPermitido = Math.min(item.getValorEfeito(), aumentoMax);
+                this.defesa += aumentoPermitido;
+                System.out.println(nome + " usou " + item.getNome() + " e aumentou a defesa em " + aumentoPermitido + "!");
+                if (aumentoPermitido < item.getValorEfeito()) {
+                    System.out.println("O aumento da defesa atingiu o limite máximo!");
+                }
             }
             default -> System.out.println("O item não teve efeito...");
         }
     }
+
 
     public boolean run() {
         int tentativa = (int) ((Math.random() * 10)) + 1;
@@ -213,8 +237,36 @@ public abstract class Personagem {
 
     public abstract void aumentarNivel();
 
-    public void usarPoderEspecial(Inimigo inimigo) {
+    public abstract void usarPoderEspecial(Inimigo inimigo);
+
+    public void drop(Inimigo inimigo) {
+
+        Item itemDropado = null;
+
+        for (Item item : inimigo.getInventario().getItens()) {
+            int chance = switch (item.getRaridade()) {
+                case 1 -> 70;
+                case 2 -> 40;
+                case 3 -> 15;
+                default -> 50;
+            };
+
+            int dado = (int) (Math.random() * 100) + 1;
+            if (dado <= chance) {
+                itemDropado = item.clone();
+                break;
+            }
+        }
+
+
+        if (itemDropado != null) {
+            this.inventario.adicionarItem(itemDropado);
+            System.out.println("\nVocê derrotou o inimigo e encontrou:");
+            System.out.println("- " + itemDropado.getNome() + " (x" + itemDropado.getQuantidade() + ")");
+        }
     }
+
+
 
     @Override
     public String toString() {

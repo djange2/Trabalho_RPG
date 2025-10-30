@@ -11,8 +11,7 @@ public class Inventario implements Cloneable{
 
     public void adicionarItem(Item novo) {
         for (Item item : itens) {
-            if (item.getNome().equals(novo.getNome())) {
-                item.setQuantidade(item.getQuantidade() + novo.getQuantidade());
+            if (item.equals(novo)) {
                 return;
             }
         }
@@ -24,7 +23,7 @@ public class Inventario implements Cloneable{
             Item atual = itens.get(i);
             if (atual.getNome().equals(item.getNome())) {
                 atual.setQuantidade(atual.getQuantidade() - item.getQuantidade());
-                if (atual.getQuantidade() == 0) itens.remove(i);
+                if (atual.getQuantidade() <= 0) itens.remove(i);
                 break;
             }
         }
@@ -32,6 +31,18 @@ public class Inventario implements Cloneable{
 
     public ArrayList<Item> getItens() {
         return new ArrayList<>(itens);
+    }
+
+    public void listarItens() {
+        if (itens.isEmpty()) {
+            System.out.println("O inventário está vazio.");
+            return;
+        }
+        List<Item> ordenados = new ArrayList<>(itens);
+        ordenados.sort(Comparator.comparing(Item::getNome));
+        for (Item item : ordenados) {
+            System.out.println(item.getNome() + " (x" + item.getQuantidade() + ")");
+        }
     }
 
     public Inventario (Inventario mod) throws Exception{

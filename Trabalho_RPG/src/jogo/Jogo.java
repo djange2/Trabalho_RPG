@@ -88,7 +88,7 @@ public class Jogo {
             byte opcao = scanner.nextByte();
 
             switch (opcao) {
-                //case 1 -> encontrarBatalha();
+                case 1 -> encontrarBatalha();
                 case 2 -> viajar();
                 case 3 -> verStatus();
                 case 4 -> verInventario();
@@ -113,6 +113,7 @@ public class Jogo {
         System.out.println(jogador.getNome());
         System.out.println("Vida: " + jogador.getPontosVida() + "/" + jogador.getPontosVidaMax());
         System.out.println("Nível: "+ jogador.getNivel());
+        System.out.println(jogador.getXp()+"/"+jogador.getXpProximoNivel());
         System.out.println("==================");
     }
 
@@ -123,13 +124,14 @@ public class Jogo {
             return;
         }
         System.out.println("\n===== INVENTÁRIO =====");
-        System.out.println(jogador.getInventario().getItens());
+        jogador.getInventario().listarItens();
     }
 
     private void descansar() {
         jogador.setPontosVida(jogador.getPontosVidaMax());
         System.out.println(jogador.getNome() + " descansou e recuperou toda a vida!");
     }
+
 
     private void viajar() {
         System.out.println("\n===== VIAGEM =====");
@@ -157,8 +159,21 @@ public class Jogo {
     }
 
     private void encontrarBatalha() {
-        if (jogador.getNivel() == 1) {
-            Inimigo inimigo = new Inimigo("Rapper Local", 1 );
+        if (areaAtual == areas[0]) {
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * 2) + 1);
+            jogador.batalhar(inimigo,true);
+        }
+        if (areaAtual == areas[1]) {
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (5 - 2 + 1)) + 2);
+            jogador.batalhar(inimigo,true);
+        }
+        if (areaAtual == areas[2]) {
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (8 - 5 + 1)) + 5);
+            jogador.batalhar(inimigo,true);
+        }
+        if (areaAtual == areas[3]) {
+            Inimigo inimigo = new Inimigo("DJ Khaled", 10);
+            jogador.batalhar(inimigo,false);
         }
     }
 }
