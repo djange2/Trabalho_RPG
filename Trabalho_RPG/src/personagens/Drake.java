@@ -10,7 +10,7 @@ public class Drake extends Personagem {
     @Override
     public void aumentarNivel() {
         this.nivel++;
-        this.pontosVida += 5;
+        this.pontosVidaMax += 5;
         this.ataque += 2;
         this.defesa += 2;
     }

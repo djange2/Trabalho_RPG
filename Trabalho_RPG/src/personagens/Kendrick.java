@@ -10,7 +10,7 @@ public class Kendrick extends Personagem {
     @Override
     public void aumentarNivel() {
         this.nivel++;
-        this.pontosVida += 4;
+        this.pontosVidaMax += 4;
         this.ataque += 2;
         this.defesa += 2;
     }

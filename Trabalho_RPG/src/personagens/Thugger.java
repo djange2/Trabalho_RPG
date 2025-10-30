@@ -10,7 +10,7 @@ public class Thugger extends Personagem {
     @Override
     public void aumentarNivel() {
         this.nivel++;
-        this.pontosVida += 3;
+        this.pontosVidaMax += 3;
         this.ataque += 2;
         this.defesa += 1;
     }
