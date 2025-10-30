@@ -160,19 +160,19 @@ public class Jogo {
 
     private void encontrarBatalha() {
         if (areaAtual == areas[0]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * 2) + 1);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * 3) + 1);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[1]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (5 - 2 + 1)) + 2);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (7 - 5 + 1)) + 5);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[2]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (8 - 5 + 1)) + 5);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (10 - 7 + 1)) + 7);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[3]) {
-            Inimigo inimigo = new Inimigo("DJ Khaled", 10);
+            Inimigo inimigo = new Inimigo("DJ Khaled", 15);
             jogador.batalhar(inimigo,false);
         }
     }

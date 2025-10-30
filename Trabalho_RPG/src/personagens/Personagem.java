@@ -240,20 +240,20 @@ public abstract class Personagem {
     public abstract void usarPoderEspecial(Inimigo inimigo);
 
     public void drop(Inimigo inimigo) {
-
-        if (((int) (Math.random() * 100) + 1) <= 30) {
+        // Chance de não dropar nada (5%)
+        if (((int) (Math.random() * 100) + 1) <= 5) {
             return;
         }
 
+        // Determinar raridade do item a ser dropado
         int dadoRaridade = (int) (Math.random() * 100) + 1;
         int raridadeEscolhida;
-
         if (dadoRaridade <= 15) {
-            raridadeEscolhida = 3;
-        } else if (dadoRaridade <= 15 + 40) {
-            raridadeEscolhida = 2;
+            raridadeEscolhida = 3; // raro
+        } else if (dadoRaridade <= 55) {
+            raridadeEscolhida = 2; // incomum
         } else {
-            raridadeEscolhida = 1;
+            raridadeEscolhida = 1; // comum
         }
 
         ArrayList<Item> itensFiltrados = new ArrayList<>();
@@ -263,17 +263,13 @@ public abstract class Personagem {
             }
         }
 
-        if (!itensFiltrados.isEmpty()) {
-            Item itemDropado = itensFiltrados.get((int) (Math.random() * itensFiltrados.size()));
-            itemDropado = itemDropado.clone();
-            this.inventario.adicionarItem(itemDropado);
+        Item itemDropado = itensFiltrados.get((int) (Math.random() * itensFiltrados.size())).clone();
+        this.inventario.adicionarItem(itemDropado);
 
-            System.out.println("\nVocê derrotou o inimigo e encontrou:");
-            System.out.println("- " + itemDropado.getNome() + " (x" + itemDropado.getQuantidade() + ")");
-        } else {
-            System.out.println("\nVocê derrotou o inimigo, mas ele não deixou nenhum item desta raridade...");
-        }
+        System.out.println("\nVocê derrotou o inimigo e encontrou:");
+        System.out.println("- " + itemDropado.getNome() + " (x" + itemDropado.getQuantidade() + ")");
     }
+
 
 
 

@@ -64,6 +64,7 @@ public class Item implements Comparable<Item>, Cloneable {
         this.efeito = novo.efeito;
         this.quantidade = novo.quantidade;
         this.valorEfeito = novo.valorEfeito;
+        this.raridade = novo.raridade; //1 - comum, 2 - raro, 3 - épico
     }
 
     @Override
