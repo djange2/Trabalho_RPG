@@ -67,7 +67,7 @@ public class Jogo {
         System.out.println("Prepare-se para a primeira batalha!");
         System.out.println("=======================================");
 
-        Inimigo inimigo = new Inimigo("Rapper Local", 1);
+        Inimigo inimigo = new Inimigo("BC RAFF", 1);
 
         System.out.println("\n" + jogador.getNome() + " X " + inimigo.getNome());
         System.out.println(inimigo.getNome() + ": \"Acha que consegue rimar comigo? Vamos ver!\"");

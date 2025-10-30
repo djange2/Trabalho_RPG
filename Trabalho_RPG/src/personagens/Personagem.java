@@ -217,7 +217,7 @@ public abstract class Personagem {
 
     public boolean run() {
         int tentativa = (int) ((Math.random() * 10)) + 1;
-        return tentativa > 7;
+        return tentativa > 3;
 
     }
 

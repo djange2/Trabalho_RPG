@@ -21,13 +21,13 @@ public class Drake extends Personagem {
             System.out.println("Você já usou seu poder especial!");
             return;
         }
-        System.out.println(" Drake ativa 'God’s Plan'! Ele regenerou sua vida!");
+        System.out.println("Drake ativa 'God’s Plan'! Ele regenerou sua vida!");
         int cura = (int) (pontosVidaMax*0.25);
         this.pontosVida += cura;
         if (this.pontosVida > this.pontosVidaMax)
             this.pontosVida = this.pontosVidaMax;
 
-        System.out.println("Thugger recuperou " + cura + " de vida!");
+        System.out.println("Drizzy recuperou " + cura + " de vida!");
         poderUsado = true;
 
     }
