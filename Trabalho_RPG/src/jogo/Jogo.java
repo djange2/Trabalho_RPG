@@ -7,6 +7,7 @@ import personagens.Inimigo;
 import personagens.Kendrick;
 import personagens.Thugger;
 
+import java.util.Objects;
 import java.util.Scanner;
 
 public class Jogo {
@@ -174,4 +175,26 @@ public class Jogo {
             jogador.batalhar(inimigo,false);
         }
     }
+
+    @Override
+    public String toString() {return "" + jogador.toString() + areas.toString();}
+
+    @Override
+    public int hashCode(){
+        int ret = 1;
+        ret = 2 * ret + jogador.hashCode();
+        ret = 2 * ret + areas.hashCode();
+        return ret;
+    }
+
+    @Override
+    public boolean equals(Object obj){
+        if (obj == this) return true;
+        if (obj == null) return false;
+        if (obj.getClass() != this.getClass()) return false;
+        Jogo j = (Jogo) obj;
+        if (!this.jogador.equals(j.jogador) && !this.areas.equals(j.areas)) return false;
+        return true;
+    }
+
 }

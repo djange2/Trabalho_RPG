@@ -267,10 +267,6 @@ public abstract class Personagem {
     }
 
 
-
-
-
-
     @Override
     public String toString() {
         return nome + " (Nível: " + nivel + ")";
@@ -281,23 +277,29 @@ public abstract class Personagem {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Personagem p = (Personagem) obj;
-        return this.nome.equals(p.nome)
-                && this.pontosVida == p.pontosVida
-                && this.ataque == p.ataque
-                && this.defesa == p.defesa
-                && this.nivel == p.nivel
-                && this.inventario.equals(p.inventario);
+        if (!this.nome.equals(p.nome) || this.pontosVida != p.pontosVida ||
+                this.pontosVidaMax != p.pontosVidaMax || this.ataque != p.ataque ||
+                    this.defesa != p.defesa || this.nivel != p.nivel || this.inventario.equals(p.inventario) ||
+                        this.xp != p.xp || this.xpProximoNivel != p.xpProximoNivel || this.poderUsado != p.poderUsado ||
+                            this.ataqueBaseBatalha != p.ataqueBaseBatalha || this.defesaBaseBatalha != p.defesaBaseBatalha) return false;
+        return true;
     }
 
     @Override
     public int hashCode() {
         int ret = 1;
         ret = ret * 2 + nome.hashCode();
-        ret = ret * 2 + Integer.hashCode(pontosVida);
-        ret = ret * 2 + Integer.hashCode(ataque);
-        ret = ret * 2 + Integer.hashCode(defesa);
-        ret = ret * 2 + Integer.hashCode(nivel);
+        ret = ret * 2 + ((Integer) pontosVida).hashCode();
+        ret = ret * 2 + ((Integer) pontosVidaMax).hashCode();
+        ret = ret * 2 + ((Integer) ataque).hashCode();
+        ret = ret * 2 + ((Integer) defesa).hashCode();
+        ret = ret * 2 + ((Integer) nivel).hashCode();
         ret = ret * 2 + inventario.hashCode();
+        ret = ret * 2 + ((Integer)xp).hashCode();
+        ret = ret * 2 + ((Integer)xpProximoNivel).hashCode();
+        ret = ret * 2 + ((Boolean)poderUsado).hashCode();
+        ret = ret * 2 + ((Integer)ataqueBaseBatalha).hashCode();
+        ret = ret * 2 + ((Integer)defesaBaseBatalha).hashCode();
         return ret;
     }
 }

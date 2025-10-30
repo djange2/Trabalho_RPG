@@ -1,7 +1,5 @@
 package itens;
 
-import java.util.Objects;
-
 public class Item implements Comparable<Item>, Cloneable {
     private  String nome;
     private String descricao;
@@ -38,7 +36,8 @@ public class Item implements Comparable<Item>, Cloneable {
         if (obj == null) return false;
         if (getClass() != obj.getClass()) return false;
         if (!this.nome.equals(((Item) obj).nome) || !this.descricao.equals(((Item) obj).descricao) ||
-                !this.efeito.equals(((Item) obj).efeito)) return false;
+                !this.efeito.equals(((Item) obj).efeito) || this.valorEfeito != ((Item) obj).valorEfeito ||
+                    this.quantidade != ((Item) obj).quantidade || this.raridade != ((Item) obj).raridade) return false;
         quantidade++;
         return true;
     }
@@ -54,6 +53,9 @@ public class Item implements Comparable<Item>, Cloneable {
         ret = ret * 2 + this.nome.hashCode();
         ret = ret * 2 + this.descricao.hashCode();
         ret = ret * 2 + this.efeito.hashCode();
+        ret = ret * 2 + ((Integer)this.valorEfeito).hashCode();
+        ret = ret * 2 + ((Integer)this.raridade).hashCode();
+        ret = ret * 2 + ((Integer)this.raridade).hashCode();
         return ret;
     }
 
@@ -75,6 +77,5 @@ public class Item implements Comparable<Item>, Cloneable {
         } catch (Exception erro) {}
         return ret;
     }
-
 
 }
