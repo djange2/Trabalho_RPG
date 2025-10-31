@@ -18,6 +18,7 @@ public class Inventario implements Cloneable{
         itens.add(novo.clone());
     }
 
+
     public void removerItem(Item item) {
         for (int i = 0; i < itens.size(); i++) {
             Item atual = itens.get(i);
@@ -41,7 +42,7 @@ public class Inventario implements Cloneable{
         List<Item> ordenados = new ArrayList<>(itens);
         ordenados.sort(Comparator.comparing(Item::getNome));
         for (Item item : ordenados) {
-            System.out.println(item.getNome() + " (x" + item.getQuantidade() + ")");
+            System.out.println(item.getNome() + " (x" + item.getQuantidade() + ") | "+item.getDescricao());
         }
     }
 

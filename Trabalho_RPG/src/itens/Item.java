@@ -29,6 +29,7 @@ public class Item implements Comparable<Item>, Cloneable {
     public String getEfeito() {return efeito;}
     public int getValorEfeito() {return valorEfeito;}
     public int getRaridade() {return raridade;}
+    public String getDescricao() {return descricao;}
 
     @Override
     public boolean equals(Object obj) {
@@ -37,7 +38,7 @@ public class Item implements Comparable<Item>, Cloneable {
         if (getClass() != obj.getClass()) return false;
         if (!this.nome.equals(((Item) obj).nome) || !this.descricao.equals(((Item) obj).descricao) ||
                 !this.efeito.equals(((Item) obj).efeito) || this.valorEfeito != ((Item) obj).valorEfeito ||
-                    this.quantidade != ((Item) obj).quantidade || this.raridade != ((Item) obj).raridade) return false;
+                this.raridade != ((Item) obj).raridade) return false;
         quantidade++;
         return true;
     }

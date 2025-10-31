@@ -13,6 +13,11 @@ public class Kendrick extends Personagem {
         this.pontosVidaMax += 4;
         this.ataque += 2;
         this.defesa += 2;
+        if (this.nivel == 3 || this.nivel == 5 || this.nivel == 8) {
+            System.out.println("====================================");
+            System.out.println("Você pode viajar para uma nova área!");
+            System.out.println("====================================");
+        }
     }
 
     @Override

@@ -103,7 +103,12 @@ public abstract class Personagem {
                         continue;
                     }
                 }
-                default -> System.out.println("Opção inválida");
+                default ->  {
+                    System.out.println("Opção inválida");
+                    System.out.println("==============");
+                    continue;
+                }
+
             }
 
             if (inimigo.pontosVida <= 0) break;
@@ -236,8 +241,8 @@ public abstract class Personagem {
     public abstract void usarPoderEspecial(Inimigo inimigo);
 
     public void drop(Inimigo inimigo) {
-        // Chance de não dropar nada (5%)
-        if (((int) (Math.random() * 100) + 1) <= 5) {
+        // Chance de não dropar nada (15%)
+        if (((int) (Math.random() * 100) + 1) <= 15) {
             return;
         }
 
@@ -265,6 +270,7 @@ public abstract class Personagem {
         System.out.println("\nVocê derrotou o inimigo e encontrou:");
         System.out.println("- " + itemDropado.getNome() + " (x" + itemDropado.getQuantidade() + ")");
     }
+
 
 
     @Override
