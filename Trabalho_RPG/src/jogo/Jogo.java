@@ -7,6 +7,7 @@ import personagens.Inimigo;
 import personagens.Kendrick;
 import personagens.Thugger;
 
+import java.sql.SQLOutput;
 import java.util.Objects;
 import java.util.Scanner;
 
@@ -20,6 +21,7 @@ public class Jogo {
             new Area("Las Vegas",8)
     };
     private Area areaAtual = areas[0];
+    private boolean fim = false;
 
     private void mostrarNarrativaArea() {
         switch (areaAtual.getNome()) {
@@ -84,6 +86,7 @@ public class Jogo {
 
     private void loopPrincipal() {
         for (;;) {
+            if (fim) break;
             menu();
             System.out.print("Escolha: ");
             descansar();
@@ -97,6 +100,10 @@ public class Jogo {
                 default -> System.out.println("Opção inválida!");
             }
         }
+        System.out.println("Metron Boomin: METROOOOOOOOOOOO!");
+        System.out.println("Metro Boomin: Muito obrigado, meu amigo. Que tal irmos para o estúdio trabalhar num novo álbum?");
+
+        System.out.println("===== FIM =====");
     }
 
     private void menu() {
@@ -173,6 +180,7 @@ public class Jogo {
         if (areaAtual == areas[3]) {
             Inimigo inimigo = new Inimigo("DJ Khaled", 15);
             jogador.batalhar(inimigo,false);
+            fim = true;
         }
     }
 
