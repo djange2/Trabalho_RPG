@@ -7,7 +7,8 @@ desse trabalho, tambem tive minha parte na correção de erros do RPG.
 Daniel Henrique Inoue Jange - 24006321 - Nota: 9
 Iniciei o trabalho criando as principais classes e os métodos padrão delas
 (toString,hashCode, construtor, construtor de cópia, clone e alguns getters
- e setters, equals e compareTo), fiz o método de batalhar.
+ e setters, equals e compareTo), fiz o método de batalhar, além também de ajudar
+ na história do jogo.
 
 Igor Ribeiro Cunha - 24004831 - Nota: 9
 Implementei a maioria dos métodos de grande parte das classes.
