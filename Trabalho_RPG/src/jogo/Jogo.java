@@ -24,17 +24,34 @@ public class Jogo {
     private void mostrarNarrativaArea() {
         switch (areaAtual.getNome()) {
             case "Seu Bairro" ->
-                    System.out.println("Você está de volta ao seu bairro, onde tudo começou. Hora de praticar suas rimas!");
+                    System.out.println("De volta às ruas apertadas do seu bairro, onde cada esquina tem um sonho — ou uma batalha de rimas esperando.");
             case "Chicago" ->
-                    System.out.println("As ruas de Chicago estão cheias de rappers querendo provar seu flow. Cuidado!");
+                    System.out.println("As ruas frias de Chicago ecoam batidas sombrias. Rappers famintos por respeito observam cada passo seu.");
             case "Houston" ->
-                    System.out.println("Houston é um território brutal. Use seu talento para enfrentar desafios!");
+                    System.out.println("A fumaça sobe e o trap domina em Houston. Aqui, a rima é agressiva e o palco é a rua!");
             case "Las Vegas" ->
-                    System.out.println("As ruas de Las Vegas são frias! DJ Khaled está por aqui...");
+                    System.out.println("Luzes brilhantes, egos maiores ainda. Em Las Vegas, poucos sobrevivem ao glamour e às batalhas… DJ Khaled te espera.");
             default ->
                     System.out.println("Inválido!");
         }
     }
+
+    private final String[] inimigosBairro = {
+            "MC da Esquina", "BC Raff", "Rapper Local", "Poeta da Laje"
+    };
+
+    private final String[] inimigosChicago = {
+            "Drill Kid", "Chi-Town MC", "Rapper das Ruas", "Flow Sangrento"
+    };
+
+    private final String[] inimigosHouston = {
+            "Trap Cowboy", "Texas Flame", "Rapper do Óleo", "H-Town G"
+    };
+
+    private final String[] inimigosVegas = {
+            "Rapper de Cassino", "Showman Misterioso", "Croupier das Rimas"
+    };
+
 
     public void iniciar() {
         System.out.println("=======================================");
@@ -95,8 +112,16 @@ public class Jogo {
                 case 2 -> viajar();
                 case 3 -> verStatus();
                 case 4 -> verInventario();
+                case 5 -> {
+                    if (areaAtual.getNome().equals("Las Vegas")) {
+                        enfrentarBoss();
+                    } else {
+                        System.out.println("Opção inválida!");
+                    }
+                }
                 default -> System.out.println("Opção inválida!");
             }
+
         }
         System.out.println("\nMetron Boomin: METROOOOOOOOOOOO!");
         System.out.println("Metro Boomin: Muito obrigado, meu amigo. Que tal irmos para o estúdio trabalhar num novo álbum?");
@@ -106,19 +131,24 @@ public class Jogo {
 
     private void menu() {
         System.out.println("\n===== MENU =====");
-        System.out.println("Área atual: "+areaAtual.getNome()+"\n");
+        System.out.println("Área atual: " + areaAtual.getNome() + "\n");
         System.out.println("1 - Encontrar Batalha");
         System.out.println("2 - Viajar");
         System.out.println("3 - Ver Status");
         System.out.println("4 - Ver Inventário");
+
+        if (areaAtual.getNome().equals("Las Vegas")) {
+            System.out.println("5 - Enfrentar DJ Khaled");
+        }
     }
+
 
     private void verStatus() {
         System.out.println("\n===== STATUS =====");
         System.out.println(jogador.getNome());
         System.out.println("Vida: " + jogador.getPontosVida() + "/" + jogador.getPontosVidaMax());
         System.out.println("Nível: "+ jogador.getNivel());
-        System.out.println(jogador.getXp()+"/"+jogador.getXpProximoNivel());
+        System.out.println(jogador.getXp()+"/"+jogador.getXpProximoNivel()+" para subir de nível! ");
         System.out.println("==================");
     }
 
@@ -163,24 +193,63 @@ public class Jogo {
     }
 
     private void encontrarBatalha() {
-        if (areaAtual == areas[0]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (2 - 1 + 1)) + 1);
-            jogador.batalhar(inimigo,true);
-        }
-        if (areaAtual == areas[1]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (4 - 3 + 1)) + 3);
-            jogador.batalhar(inimigo,true);
-        }
-        if (areaAtual == areas[2]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (7 - 4 + 1)) + 4);
-            jogador.batalhar(inimigo,true);
-        }
-        if (areaAtual == areas[3]) {
-            Inimigo inimigo = new Inimigo("DJ Khaled", 10);
-            jogador.batalhar(inimigo,false);
+
+        int minLvl = areaAtual.getMinLvl();
+        int maxLvl = minLvl + 2;
+
+        String inimigoNome = switch (areaAtual.getNome()) {
+            case "Seu Bairro" -> inimigosBairro[(int)(Math.random()*inimigosBairro.length)];
+            case "Chicago" -> inimigosChicago[(int)(Math.random()*inimigosChicago.length)];
+            case "Houston" -> inimigosHouston[(int)(Math.random()*inimigosHouston.length)];
+            case "Las Vegas" -> inimigosVegas[(int)(Math.random()*inimigosVegas.length)];
+            default -> "Rapper Misterioso";
+        };
+
+        Inimigo inimigo = new Inimigo(
+                inimigoNome,
+                (int) (Math.random() * (maxLvl - minLvl + 1)) + minLvl
+        );
+
+        jogador.batalhar(inimigo, true);
+    }
+
+
+
+    private void enfrentarBoss() {
+        limparTela();
+        System.out.println("As luzes de Las Vegas piscam enquanto você caminha pela Strip.");
+        System.out.println("Lamborghinis passam, iluminando seu rosto com neon rosa e verde.");
+        System.out.println("No topo de um gigantesco cassino dourado, um holograma do DJ Khaled brilha no céu.");
+        System.out.println("Por todos os lados, você escuta: \"ANOTHER ONE! ANOTHER ONE!\"");
+        System.out.println();
+        System.out.println("Você entra no cassino. Guardas enormes bloqueiam seu caminho...");
+        System.out.println("Você ergue o queixo — confiança é sua arma. Eles abrem passagem.");
+        System.out.println();
+        System.out.println("Um estrondo! Fumaça toma o palco!");
+        System.out.println("DJ Khaled surge descendo em um trono flutuante de ouro maciço.");
+        System.out.println();
+        System.out.println("DJ Khaled: \"You think you can beat me?! I'M THE KEY TO SUCCESS!\"");
+        System.out.println();
+
+        Inimigo khaled = new Inimigo("DJ Khaled (Boss)", 12);
+
+        System.out.println("\n" + jogador.getNome() + " X " + khaled.getNome());
+        System.out.println("O clima esquenta... A batalha vai começar!");
+        System.out.println();
+
+        jogador.batalhar(khaled, false);
+
+        if (jogador.getPontosVida() > 0) {
             fim = true;
         }
     }
+
+    private void limparTela() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
+        }
+    }
+
 
     @Override
     public String toString() {return "" + jogador.toString() + areas.toString();}

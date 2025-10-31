@@ -1,4 +1,8 @@
-Anderson - - Nota:
+Anderson Lucas Do Nascimento Gondim - 24787293 - Nota: 8
+Minha maior participação foi na criação do jogo e da história, criei alguns
+metódos para certas classes, e tambem tive minha participação
+na parte de balanceamento do jogo, que pra mim foi um dos principais obstáculos
+desse trabalho, tambem tive minha parte na correção de erros do RPG.
 
 Daniel Henrique Inoue Jange - 24006321 - Nota: 9
 Iniciei o trabalho criando as principais classes e os métodos padrão delas
