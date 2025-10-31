@@ -2,7 +2,14 @@ Anderson - - Nota:
 
 Daniel Henrique Inoue Jange - 24006321 - Nota: 9
 Iniciei o trabalho criando as principais classes e os métodos padrão delas
-(toString,hashCode, construtor, construtor de cópia, clone e alguns getter
+(toString,hashCode, construtor, construtor de cópia, clone e alguns getters
  e setters, equals e compareTo), fiz o método de batalhar.
 
-Igor Ribeiro Cunha - - Nota:
+Igor Ribeiro Cunha - 24004831 - Nota: 9
+Implementei a maioria dos métodos de grande parte das classes.
+Trabalhei principalmente nos requisitos previamente definidos pelo professor.
+Tive participação na criação da história e no balanceamento do jogo, a fim de 
+que o jogador tenha uma experiência simultaneamente agradável e desafiadora.
+O ponto mais importante do trabalho, isto é, a orientação a objetos, foi um
+obstáculo a ser superado, já que alguns conceitos podem não ter acabado da maneira
+mais correta possível. Tendo em vista meu relato e minha experiência, 9 é uma nota justa.
