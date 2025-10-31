@@ -1,14 +1,12 @@
 package jogo;
 
 import areas.Area;
-import personagens.*;
 import personagens.Drake;
 import personagens.Inimigo;
 import personagens.Kendrick;
 import personagens.Thugger;
+import personagens.personagem.Personagem;
 
-import java.sql.SQLOutput;
-import java.util.Objects;
 import java.util.Scanner;
 
 public class Jogo {
@@ -170,7 +168,7 @@ public class Jogo {
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[1]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", 4);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (4 - 3 + 1)) + 3);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[2]) {

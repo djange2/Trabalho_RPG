@@ -1,5 +1,7 @@
 package personagens;
 
+import personagens.personagem.Personagem;
+
 public class Thugger extends Personagem {
 
     public Thugger() {

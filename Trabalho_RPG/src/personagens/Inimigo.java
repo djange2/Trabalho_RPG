@@ -2,6 +2,7 @@ package personagens;
 
 import itens.Inventario;
 import itens.Item;
+import personagens.personagem.Personagem;
 
 public class Inimigo extends Personagem {
         private int xpDrop;

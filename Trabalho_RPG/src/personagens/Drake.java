@@ -1,5 +1,7 @@
 package personagens;
 
+import personagens.personagem.Personagem;
+
 public class Drake extends Personagem {
 
     public Drake() {

@@ -1,7 +1,8 @@
-package personagens;
+package personagens.personagem;
 
 import itens.Inventario;
 import itens.Item;
+import personagens.Inimigo;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -169,7 +170,7 @@ public abstract class Personagem {
         System.out.println("0 - Voltar");
         for (int i = 0; i < inventario.getItens().size(); i++) {
             Item item = inventario.getItens().get(i);
-            System.out.println((i + 1) + " - " + item.getNome() + " (" + item.getQuantidade() + ")");
+            System.out.println((i + 1) + " - " + item.getNome() + " (x" + item.getQuantidade() + ") | "+item.getDescricao());
         }
 
         int escolha = scanner.nextByte();
