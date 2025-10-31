@@ -30,8 +30,12 @@ public class Thugger extends Personagem {
         }
         System.out.println("Young Thug entra no 'Slime Mode'! Ele preparou um ataque duplo!");
         rimar(inimigo);
-        int dado = ((int) (Math.random() * 10)) + 1;
-        if (dado >= 5) rimar(inimigo);
+        if (rolarDado() > 4) {
+            rimar(inimigo);
+            this.poderUsado = true;
+            return;
+        }
+        System.out.println("Ele errou o segundo ataque!");
         poderUsado = true;
     }
 }

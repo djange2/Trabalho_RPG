@@ -16,7 +16,7 @@ public class Jogo {
             new Area("Seu Bairro",1),
             new Area("Chicago",3),
             new Area("Houston",5),
-            new Area("Las Vegas (Recomendado: Nível 10+",8)
+            new Area("Las Vegas",8)
     };
     private Area areaAtual = areas[0];
     private boolean fim = false;

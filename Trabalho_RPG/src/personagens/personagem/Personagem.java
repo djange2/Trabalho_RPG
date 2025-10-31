@@ -217,7 +217,7 @@ public abstract class Personagem {
                     this.defesa += item.getValorEfeito();
                 }
             }
-            default -> System.out.println("");
+            default -> System.out.println();
         }
     }
 
