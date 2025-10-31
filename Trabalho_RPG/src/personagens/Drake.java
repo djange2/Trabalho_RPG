@@ -5,7 +5,7 @@ import personagens.personagem.Personagem;
 public class Drake extends Personagem {
 
     public Drake() {
-        super("Drake",100,10,14);
+        super("Drake",110,10,14);
         poderUsado = false;
     }
 

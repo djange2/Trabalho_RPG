@@ -36,19 +36,19 @@ public class Jogo {
         }
     }
 
-    private final String[] inimigosBairro = {
+    private String[] inimigosBairro = {
             "MC da Esquina", "BC Raff", "Rapper Local", "Poeta da Laje"
     };
 
-    private final String[] inimigosChicago = {
+    private String[] inimigosChicago = {
             "Drill Kid", "Chi-Town MC", "Rapper das Ruas", "Flow Sangrento"
     };
 
-    private final String[] inimigosHouston = {
+    private String[] inimigosHouston = {
             "Trap Cowboy", "Texas Flame", "Rapper do Óleo", "H-Town G"
     };
 
-    private final String[] inimigosVegas = {
+    private String[] inimigosVegas = {
             "Rapper de Cassino", "Showman Misterioso", "Croupier das Rimas"
     };
 
@@ -202,7 +202,7 @@ public class Jogo {
             case "Chicago" -> inimigosChicago[(int)(Math.random()*inimigosChicago.length)];
             case "Houston" -> inimigosHouston[(int)(Math.random()*inimigosHouston.length)];
             case "Las Vegas" -> inimigosVegas[(int)(Math.random()*inimigosVegas.length)];
-            default -> "Rapper Misterioso";
+            default -> "";
         };
 
         Inimigo inimigo = new Inimigo(
@@ -259,6 +259,9 @@ public class Jogo {
         int ret = 1;
         ret = 2 * ret + jogador.hashCode();
         ret = 2 * ret + areas.hashCode();
+        ret = 2 * ret + Boolean.hashCode(this.fim);
+
+        if (ret<0) ret =-ret;
         return ret;
     }
 
@@ -268,7 +271,7 @@ public class Jogo {
         if (obj == null) return false;
         if (obj.getClass() != this.getClass()) return false;
         Jogo j = (Jogo) obj;
-        if (!this.jogador.equals(j.jogador) && !this.areas.equals(j.areas)) return false;
+        if (!this.jogador.equals(j.jogador) || !this.areas.equals(j.areas) || !(this.fim == j.fim )) return false;
         return true;
     }
 
