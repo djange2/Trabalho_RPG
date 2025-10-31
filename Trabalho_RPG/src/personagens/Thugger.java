@@ -10,8 +10,8 @@ public class Thugger extends Personagem {
     @Override
     public void aumentarNivel() {
         this.nivel++;
-        this.pontosVidaMax += 3;
-        this.ataque += 2;
+        this.pontosVidaMax += 2;
+        this.ataque += 3;
         this.defesa += 1;
         if (this.nivel == 3 || this.nivel == 5 || this.nivel == 8) {
             System.out.println("====================================");
@@ -28,9 +28,8 @@ public class Thugger extends Personagem {
         }
         System.out.println("Young Thug entra no 'Slime Mode'! Ele preparou um ataque duplo!");
         rimar(inimigo);
-        inimigo.defesa +=5;
-        rimar(inimigo);
-        inimigo.defesa -=5;
+        int dado = ((int) (Math.random() * 10)) + 1;
+        if (dado >= 5) rimar(inimigo);
         poderUsado = true;
     }
 }

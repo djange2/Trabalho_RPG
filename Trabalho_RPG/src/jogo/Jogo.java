@@ -18,7 +18,7 @@ public class Jogo {
             new Area("Seu Bairro",1),
             new Area("Chicago",3),
             new Area("Houston",5),
-            new Area("Las Vegas",8)
+            new Area("Las Vegas (Recomendado: Nível 10+",8)
     };
     private Area areaAtual = areas[0];
     private boolean fim = false;
@@ -100,7 +100,7 @@ public class Jogo {
                 default -> System.out.println("Opção inválida!");
             }
         }
-        System.out.println("Metron Boomin: METROOOOOOOOOOOO!");
+        System.out.println("\nMetron Boomin: METROOOOOOOOOOOO!");
         System.out.println("Metro Boomin: Muito obrigado, meu amigo. Que tal irmos para o estúdio trabalhar num novo álbum?");
 
         System.out.println("===== FIM =====");
@@ -166,19 +166,19 @@ public class Jogo {
 
     private void encontrarBatalha() {
         if (areaAtual == areas[0]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * 2) + 1);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (2 - 1 + 1)) + 1);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[1]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (5 - 3 + 1)) + 3);
+            Inimigo inimigo = new Inimigo("Rapper Local", 4);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[2]) {
-            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (9 - 6 + 1)) + 6);
+            Inimigo inimigo = new Inimigo("Rapper Local", (int) (Math.random() * (7 - 4 + 1)) + 4);
             jogador.batalhar(inimigo,true);
         }
         if (areaAtual == areas[3]) {
-            Inimigo inimigo = new Inimigo("DJ Khaled", 15);
+            Inimigo inimigo = new Inimigo("DJ Khaled", 10);
             jogador.batalhar(inimigo,false);
             fim = true;
         }

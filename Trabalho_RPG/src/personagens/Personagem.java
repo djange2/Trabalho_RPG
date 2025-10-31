@@ -241,9 +241,15 @@ public abstract class Personagem {
     public abstract void usarPoderEspecial(Inimigo inimigo);
 
     public void drop(Inimigo inimigo) {
-        // Chance de não dropar nada (15%)
-        if (((int) (Math.random() * 100) + 1) <= 15) {
-            return;
+        if (inimigo.nivel <= 4) {
+            if (((int) (Math.random() * 100) + 1) <= 25) {
+                return;
+            }
+        }
+        else {
+            if (((int) (Math.random() * 100) + 1) <= 10) {
+                return;
+            }
         }
 
         // Determinar raridade do item a ser dropado
